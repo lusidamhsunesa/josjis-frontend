@@ -36,6 +36,7 @@ const NotFound = React.lazy(() => import("../pages/NotFound"));
 
 // Provider
 import { ProductProvider } from "../services/adminProducts/productContext";
+import { OrderProvider } from "../services/adminOrders/orderContext";
 
 export const router = createBrowserRouter([
   // PUBLIC ROUTES
@@ -113,11 +114,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin/menu",
     element: (
-      // <PrivateAuth>
-      <ProductProvider>
-        <ManagementMenu />
-      </ProductProvider>
-      // </PrivateAuth>
+      <PrivateAuth>
+        <ProductProvider>
+          <ManagementMenu />
+        </ProductProvider>
+      </PrivateAuth>
     ),
   },
   {
@@ -140,7 +141,9 @@ export const router = createBrowserRouter([
     path: "/admin/orders",
     element: (
       <PrivateAuth>
-        <Orders />
+        <OrderProvider>
+          <Orders />
+        </OrderProvider>
       </PrivateAuth>
     ),
   },
