@@ -11,7 +11,7 @@ const OrderContext = createContext();
 export const OrderProvider = ({ children }) => {
   const [query, setQuery] = useState({
     page: 1,
-    limit: 10,
+    limit: 100,
     search: "",
     sortBy: "created_at",
     order: "desc",

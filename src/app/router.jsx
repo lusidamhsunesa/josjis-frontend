@@ -158,9 +158,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin/status",
     element: (
-      <PrivateAuth>
+      // <PrivateAuth>
+      <OrderProvider>
         <OrderStatus />
-      </PrivateAuth>
+      </OrderProvider>
+      // </PrivateAuth>
     ),
   },
   {
