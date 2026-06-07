@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "../services/adminProducts/productsApi";
 import { ordersApi } from "../services/adminOrders/ordersApi";
-// import { ordersApi } from "../services/order/OrdersApi";
-// import { paymentsApi } from "../services/payments/PaymentApi";
-// import { tablesApi } from "../services/tables/TablesApi";
+import { ratingsApi } from "../services/adminRating/ratingsApi";
 
 export const store = configureStore({
   reducer: {
     // RTK Query — reducer & cache untuk todos
     [productsApi.reducerPath]: productsApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
+    [ratingsApi.reducerPath]: ratingsApi.reducer,
     // [paymentsApi.reducerPath]: paymentsApi.reducer,
     // [tablesApi.reducerPath]: tablesApi.reducer,
   },
@@ -19,6 +18,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat(
       productsApi.middleware,
       ordersApi.middleware,
+      ratingsApi.middleware,
       // paymentsApi.middleware,
       // tablesApi.middleware,
     ),
