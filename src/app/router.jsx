@@ -113,9 +113,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin/menu",
     element: (
-      <PrivateAuth>
+      // <PrivateAuth>
+      <ProductProvider>
         <ManagementMenu />
-      </PrivateAuth>
+      </ProductProvider>
+      // </PrivateAuth>
     ),
   },
   {
