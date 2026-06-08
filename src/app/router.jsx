@@ -39,6 +39,8 @@ import { ProductProvider } from "../services/adminProducts/productContext";
 import { OrderProvider } from "../services/adminOrders/orderContext";
 import { RatingProvider } from "../services/adminRating/ratingsContext";
 
+import { CustomerProductProvider } from "../services/customerProducts/customerProductContext";
+
 export const router = createBrowserRouter([
   // PUBLIC ROUTES
   {
@@ -64,15 +66,27 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <CustomerProductProvider>
+            <Home />
+          </CustomerProductProvider>
+        ),
       },
       {
         path: "/menu",
-        element: <Menu />,
+        element: (
+          <CustomerProductProvider>
+            <Menu />
+          </CustomerProductProvider>
+        ),
       },
       {
         path: "/product/:id",
-        element: <ProductDetail />,
+        element: (
+          <CustomerProductProvider>
+            <ProductDetail />
+          </CustomerProductProvider>
+        ),
       },
       {
         path: "/cart",
