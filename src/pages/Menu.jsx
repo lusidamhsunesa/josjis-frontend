@@ -45,7 +45,7 @@ const Menu = () => {
       {/* Global Background Image (Fixed) */}
       <div className="fixed inset-0 z-0">
         <img
-          src="https://www.figma.com/api/mcp/asset/23e8e8c3-5872-43e7-8639-df224538d1c3"
+          src="/checkout_bg_full.png"
           alt=""
           className="w-full h-full object-cover opacity-30"
         />

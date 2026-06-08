@@ -45,7 +45,7 @@ const Home = () => {
       {/* Global Background Image (Fixed) */}
       <div className="fixed inset-0 z-0">
         <img
-          src="https://www.figma.com/api/mcp/asset/9e8db258-058f-443c-b83c-1d524144b36a"
+          src="/checkout_bg_full.png"
           alt=""
           className="w-full h-full object-cover opacity-30"
         />
