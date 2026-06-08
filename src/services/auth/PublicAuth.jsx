@@ -17,7 +17,7 @@ function LoadingScreen() {
       <style>{`
         .loading-screen {
           min-height: 100vh;
-          background: #0a0a14;
+          background: #a50101;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -46,14 +46,14 @@ function LoadingScreen() {
         .loading-ring {
           width: 36px; height: 36px;
           border: 2.5px solid rgba(99,102,241,0.2);
-          border-top-color: #6366f1;
+          border-top-color: #ffffff;
           border-radius: 50%;
           animation: spin 0.75s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-text {
           font-size: 13px;
-          color: #4b5563;
+          color: #ffffff;
           letter-spacing: 0.3px;
         }
       `}</style>
