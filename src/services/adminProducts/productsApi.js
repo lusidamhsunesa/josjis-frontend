@@ -50,7 +50,7 @@ export const productsApi = createApi({
         formData.append("price", data.price);
         formData.append("description", data.description);
         formData.append("category", data.category);
-        formData.append("is_active", data.is_active ? true : false);
+        // formData.append("is_active", data.is_active ? true : false);
 
         // upload multiple images
         data.images?.forEach((file) => {

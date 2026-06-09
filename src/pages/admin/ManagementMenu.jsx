@@ -17,6 +17,7 @@ const ManagementMenu = () => {
   const [searchTerm, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [pendingOrdersCount, setPendingOrdersCount] = useState(0);
+  const [selected, setSelected] = useState(null);
   const navigate = useNavigate();
   const {
     products,
@@ -38,20 +39,26 @@ const ManagementMenu = () => {
     setPendingOrdersCount(orders.filter((o) => o.status === "Menunggu").length);
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (product) => {
     if (window.confirm("Yakin ingin menghapus menu ini?")) {
-      const updatedMenu = adminService.deleteMenuItem(id);
-      setMenuItems(updatedMenu);
+      try {
+        await removeProduct(product.id);
+
+        alert(`Produk "${product.name}" berhasil dihapus`);
+      } catch (err) {
+        console.error(err);
+        alert("Gagal menghapus produk");
+      }
     }
   };
 
-  const filteredMenu = menuItems.filter((item) => {
+  const filteredMenu = products.filter((item) => {
     const matchesSearch = item.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "Semua Kategori" ||
-      item.category === selectedCategory;
+      item.category.toLowerCase() === selectedCategory.toLowerCase();
     return matchesSearch && matchesCategory;
   });
 
@@ -200,7 +207,7 @@ const ManagementMenu = () => {
 
           {/* Table Rows */}
           <div className="space-y-0 mt-0">
-            {products.map((product, index) => (
+            {filteredMenu.map((product, index) => (
               <div
                 key={product.id}
                 className="grid grid-cols-[90px_1fr_120px_150px_150px_100px] gap-[40px] bg-[#9d8a7e]/50 h-[96px] items-center px-[26px] border-t border-black/10"
@@ -234,10 +241,20 @@ const ManagementMenu = () => {
                   {rupiahFormat(product.price)}
                 </span>
                 <div
-                  className={`px-[10px] py-[4px] rounded-[5px] text-center ${product.is_active === true ? "bg-[#06b139]/85" : "bg-[#d20102]/85"}`}
+                  className={`px-[10px] py-[4px] rounded-[5px] text-center ${
+                    product.is_deleted === true
+                      ? "bg-[#d20102]/85"
+                      : product.is_active === true
+                        ? "bg-[#06b139]/85"
+                        : "bg-[#d20102]/85"
+                  }`}
                 >
                   <span className="font-roboto font-medium text-[18px] text-white">
-                    {product.is_active === true ? "Tersedia" : "Habis"}
+                    {product.is_deleted === true
+                      ? "Deleted"
+                      : product.is_active === true
+                        ? "Tersedia"
+                        : "Habis"}
                   </span>
                 </div>
                 <div className="flex gap-[8px]">
@@ -249,7 +266,7 @@ const ManagementMenu = () => {
                   </div>
                   <div
                     className="size-[35px] cursor-pointer hover:scale-110 transition-transform"
-                    onClick={() => handleDelete(product.id)}
+                    onClick={() => handleDelete(product)}
                   >
                     <img
                       alt="Delete"
