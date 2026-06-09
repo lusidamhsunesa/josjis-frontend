@@ -154,7 +154,7 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div className="absolute bottom-[66px] left-0 right-0 flex justify-center">
+      <div className="absolute bottom-[66px] left-[35px]">
         <button
           onClick={logout}
           className="flex items-center gap-[8px] h-[66px] bg-[rgba(0,0,0,0.55)] border border-black rounded-[10px] pb-[10px] pl-[20px] pr-[21px] pt-[9px] hover:bg-black/70 transition-colors"
