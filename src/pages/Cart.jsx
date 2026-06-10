@@ -113,12 +113,12 @@ const Cart = () => {
                           <div className="bg-[rgba(222,222,222,0.75)] backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-4 border border-black/5 shadow-inner">
                             <button 
                               onClick={() => handleUpdateQuantity(item.id, -1)}
-                              className="text-primary-red hover:scale-125 transition-transform text-2xl font-bold"
+                              className="w-10 h-10 rounded-full bg-[#FFD900] text-[#743B0E] flex items-center justify-center text-2xl font-bold hover:scale-110 transition-transform shadow-md"
                             >−</button>
                             <span className="text-2xl font-bold text-black min-w-[30px] text-center">{item.quantity}</span>
                             <button 
                               onClick={() => handleUpdateQuantity(item.id, 1)}
-                              className="text-primary-red hover:scale-125 transition-transform text-2xl font-bold"
+                              className="w-10 h-10 rounded-full bg-[#FFD900] text-[#743B0E] flex items-center justify-center text-2xl font-bold hover:scale-110 transition-transform shadow-md"
                             >+</button>
                           </div>
                         </div>
@@ -142,17 +142,18 @@ const Cart = () => {
                 <div className="bg-[rgba(255,255,255,0.03)] border border-white rounded-[15px] p-8 w-full max-w-[450px] shadow-[0_17px_10px_-1px_rgba(0,0,0,0.5),inset_3px_-23px_5.6px_-21px_rgba(0,0,0,0.48)] flex justify-between items-center backdrop-blur-sm">
                   <span className="font-paytone text-2xl text-black/80 uppercase tracking-wider">Total</span>
                   <span className="font-paytone text-2xl text-black/80">Rp {totalPrice.toLocaleString('id-ID')}</span>
-                </div>
-
-                <button 
-                  onClick={handleConfirmOrder}
-                  className="bg-[#FFD900] text-[#743B0E] font-paytone text-[38px] py-6 px-12 rounded-[15px] shadow-[0_17px_10px_-1px_rgba(0,0,0,0.5),inset_3px_-23px_5.6px_-21px_rgba(0,0,0,0.48)] border border-white hover:scale-105 active:scale-95 transition-all w-full max-w-[452px]"
-                >
-                  Konfirmasi Pesanan
-                </button>
+                </div>  
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center mt-10">
+          <button 
+            onClick={handleConfirmOrder}
+            className="bg-[#FFD900] text-[#743B0E] font-paytone text-[25px] py-4 px-12 rounded-[15px] shadow-[0_17px_10px_-1px_rgba(0,0,0,0.5),inset_3px_-23px_5.6px_-21px_rgba(0,0,0,0.48)] border border-white hover:scale-105 active:scale-95 transition-all w-full max-w-[380px]"
+          >
+            Konfirmasi Pesanan
+          </button>
         </div>
       </main>
     </div>
