@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cartService } from '../services/cartService';
+import Navbar from '../components/Navbar';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Cart = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#dc0002] to-[#770001] h-[80px] flex items-center px-6 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)]">
+      <Navbar> 
         <button 
           onClick={() => navigate(-1)}
           className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform ml-[20px]"
@@ -58,6 +59,7 @@ const Cart = () => {
         <h1 className="font-paytone text-2xl text-white ml-4">
           JOS JIS - Keranjang Belanja
         </h1>
+      
 
         {/* Nav Links */}
         <div className="hidden md:flex ml-auto items-center gap-10 pr-[95px]">
@@ -66,7 +68,7 @@ const Cart = () => {
           <div className="bg-[#FFD900] px-4 py-1 rounded-full text-black font-bold">Keranjang</div>
           <button onClick={() => navigate('/')} className="text-white hover:text-accent-yellow">Keluar</button>
         </div>
-      </header>
+      </Navbar>
 
       <main className="relative z-10 max-w-[1440px] mx-auto p-8 md:px-[170px] py-[60px]">
         {/* Glass Container for Title */}
