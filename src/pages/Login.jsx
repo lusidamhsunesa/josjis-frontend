@@ -47,10 +47,10 @@ const Login = () => {
             onClick={() => handleLogin('customer')}
             className="w-full h-[105px] rounded-[40px] bg-gradient-to-r from-white/0 to-white/10 border border-white/0 shadow-[0_0_42px_rgba(0,0,0,0.58),inset_0_30px_12px_-21px_rgba(16,16,16,0.58)] flex items-center justify-center gap-6 transition-all hover:scale-105 active:scale-95 group relative overflow-hidden"
           >
-            <div className="w-[53px] h-[53px] relative z-10 flex items-center justify-center">
+            <div className="w-[53px] h-[53px] flex items-center justify-center mx-auto">
               <img src="/mdi_user.svg" alt="" className="size-full object-contain" />
             </div>
-            <span className="font-poppins font-bold text-[24px] text-white tracking-wide relative z-10">Customer</span>
+            <span className="font-poppins font-bold text-[24px] text-white -translate-x-35">Customer</span>
           </button>
 
           {/* Admin Button */}
@@ -58,10 +58,10 @@ const Login = () => {
             onClick={() => handleLogin('admin')}
             className="w-full h-[105px] rounded-[40px] bg-gradient-to-r from-white/0 to-white/10 border border-white/0 shadow-[0_0_42px_rgba(0,0,0,0.58),inset_0_30px_12px_-21px_rgba(16,16,16,0.58)] flex items-center justify-center gap-6 transition-all hover:scale-105 active:scale-95 group relative overflow-hidden"
           >
-            <div className="w-[53px] h-[53px] relative z-10 flex items-center justify-center">
+            <div className="w-[72px] h-[72px] object-contain -translate-x-4">
               <img src="/admin/clarity_administrator-solid.svg" alt="" className="size-full object-contain" />
             </div>
-            <span className="font-poppins font-bold text-[24px] text-white tracking-wide relative z-10">Admin</span>
+            <span className="font-poppins font-bold text-[24px] text-white -translate-x-4">Admin</span>
           </button>
         </div>
       </div>
