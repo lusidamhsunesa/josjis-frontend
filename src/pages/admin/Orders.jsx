@@ -28,8 +28,14 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
         };
       case "completed":
         return {
-          label: "completed",
+          label: "Selesai",
           color: "bg-green-500",
+          textColor: "text-white",
+        };
+      case "cancelled":
+        return {
+          label: "Dibatalkan",
+          color: "bg-red-500",
           textColor: "text-white",
         };
       default:
@@ -89,10 +95,23 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
       {/* Info Grid */}
       <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-100">
         <div>
-          <p className="font-inter text-[#bbbec9] text-[11px]">Nomor Meja</p>
-          <p className="font-inter font-bold text-[#636364] text-[16px]">
-            {order.table_id ? `Meja ..` : "Takeaway"}
-          </p>
+          {order.table_id ? (
+            <>
+              <p className="font-inter text-[#bbbec9] text-[11px]">
+                Nomor Meja
+              </p>
+              <p className="font-inter font-bold text-[#636364] text-[16px]">
+                {order.tables.name}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="font-inter text-[#bbbec9] text-[11px]">Pesanan</p>
+              <p className="font-inter font-bold text-[#636364] text-[16px]">
+                Take Away
+              </p>
+            </>
+          )}
         </div>
         <div>
           <p className="font-inter text-[#b8bbc6] text-[11px]">
@@ -140,7 +159,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
           >
             <img src={imgVector7} alt="" className="size-[20px]" />
             <span className="font-roboto font-medium text-white text-[13px]">
-              completed
+              Selesaikan
             </span>
           </button>
         )}
@@ -170,15 +189,14 @@ const Orders = () => {
   //   setOrders(adminService.getOrders());
   // }, []);
 
-  const handleUpdateStatus = (id, newStatus) => {
-    const updatedOrders = adminService.updateOrderStatus(id, newStatus);
-    // setOrders(updatedOrders);
+  const handleUpdateStatus = async (id, newStatus) => {
+    const updatedOrders = await editOrder(id, newStatus);
   };
 
   const filteredOrders = orders.filter((order) => {
-    const matchesSearch =
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = order.id
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const matchesStatus =
       filterStatus === "Semua" || order.status === filterStatus;
     return matchesSearch && matchesStatus;
@@ -227,9 +245,9 @@ const Orders = () => {
         <div className="flex gap-4 md:gap-[32px] mb-[40px] overflow-x-auto pb-4 scrollbar-hide">
           {[
             { label: "Total Pesanan", val: stats.total },
-            { label: "pending", val: stats.menunggu },
-            { label: "in_progress", val: stats.diproses },
-            { label: "completed", val: stats.selesai },
+            { label: "Baru", val: stats.menunggu },
+            { label: "Diproses", val: stats.diproses },
+            { label: "Selesai", val: stats.selesai },
           ].map((stat, i) => (
             <div
               key={i}
@@ -263,9 +281,9 @@ const Orders = () => {
                   onChange={(e) => setFilterStatus(e.target.value)}
                 >
                   <option value="Semua">Semua Status</option>
-                  <option value="pending">pending</option>
-                  <option value="in_progress">in_progress</option>
-                  <option value="completed">completed</option>
+                  <option value="pending">Baru</option>
+                  <option value="in_progress">Diproses</option>
+                  <option value="completed">Selesai</option>
                 </select>
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">
                   <svg

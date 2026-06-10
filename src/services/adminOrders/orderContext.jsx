@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import {
   useGetOrdersQuery,
-  useCreateOrderMutation,
   useUpdateOrderMutation,
   useDeleteOrderMutation,
 } from "./ordersApi";
@@ -19,14 +18,11 @@ export const OrderProvider = ({ children }) => {
 
   const { data, isLoading, isError, error, refetch } = useGetOrdersQuery(query);
 
-  const [createOrder] = useCreateOrderMutation();
   const [updateOrder] = useUpdateOrderMutation();
   const [deleteOrder] = useDeleteOrderMutation();
 
-  const addOrder = async (data) => await createOrder(data).unwrap();
-
-  const editOrder = async (id, data) =>
-    await updateOrder({ id, ...data }).unwrap();
+  const editOrder = async (id, status) =>
+    await updateOrder({ id, status }).unwrap();
 
   const removeOrder = async (id) => await deleteOrder(id).unwrap();
 
@@ -39,7 +35,6 @@ export const OrderProvider = ({ children }) => {
         error: isError ? error : null,
 
         // CRUD
-        addOrder,
         editOrder,
         removeOrder,
 

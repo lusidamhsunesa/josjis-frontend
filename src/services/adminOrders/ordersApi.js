@@ -41,55 +41,15 @@ export const ordersApi = createApi({
       providesTags: (result, error, id) => [{ type: "Order", id }],
     }),
 
-    // Endpoint untuk POST /orders - Menggunakan mutation untuk operasi yang mengubah data (create).
-    createOrder: builder.mutation({
-      query: (data) => {
-        const formData = new FormData();
-
-        formData.append("name", data.name);
-        formData.append("price", data.price);
-        formData.append("description", data.description);
-        formData.append("category", data.category);
-        formData.append("is_active", data.is_active ? true : false);
-
-        // upload multiple images
-        data.images?.forEach((file) => {
-          formData.append("img", file);
-        });
-
-        return {
-          url: "/orders",
-          method: "POST",
-          body: formData,
-        };
-      },
-      // invalidatesTags: Setelah mutation berhasil, hapus cache dengan tag "Order" agar query getOrders refetch data terbaru.
-      invalidatesTags: ["Order"],
-    }),
-
     // Endpoint untuk PUT /orders/:id - Mutation untuk update product berdasarkan ID.
     updateOrder: builder.mutation({
-      query: ({ id, ...data }) => {
-        const formData = new FormData();
-
-        formData.append("name", data.name);
-        formData.append("price", data.price);
-        formData.append("description", data.description);
-        formData.append("category", data.category);
-        formData.append("is_active", data.is_active ? true : false);
-        formData.append("is_deleted", data.is_deleted ? true : false);
-
-        // kalau ada gambar baru
-        data.images?.forEach((file) => {
-          formData.append("img", file);
-        });
-
-        return {
-          url: `/orders/${id}`,
-          method: "PUT", // atau "PATCH" tergantung backend
-          body: formData,
-        };
-      },
+      query: ({ id, status }) => ({
+        url: `/orders/${id}`,
+        method: "PUT",
+        body: {
+          status,
+        },
+      }),
       invalidatesTags: ["Order"],
     }),
 
@@ -109,7 +69,6 @@ export const ordersApi = createApi({
 export const {
   useGetOrdersQuery,
   useGetOrderByIdQuery,
-  useCreateOrderMutation,
   useUpdateOrderMutation,
   useDeleteOrderMutation,
 } = ordersApi;
