@@ -149,11 +149,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin/menu/edit/:id",
     element: (
-      // <PrivateAuth>
-      <ProductProvider>
-        <AddEditMenu />
-      </ProductProvider>
-      // </PrivateAuth>
+      <PrivateAuth>
+        <ProductProvider>
+          <AddEditMenu />
+        </ProductProvider>
+      </PrivateAuth>
     ),
   },
   {
@@ -170,7 +170,9 @@ export const router = createBrowserRouter([
     path: "/admin/order/:id",
     element: (
       <PrivateAuth>
-        <OrderDetail />
+        <OrderProvider>
+          <OrderDetail />
+        </OrderProvider>
       </PrivateAuth>
     ),
   },
