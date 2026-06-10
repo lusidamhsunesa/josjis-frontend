@@ -9,7 +9,7 @@ const AdminLayout = ({ children }) => {
         {/* Background image for admin content */}
         <img
           alt=""
-          className="absolute inset-0 object-cover opacity-60 pointer-events-none size-full"
+          className="absolute inset-0 object-cover opacity-30 pointer-events-none size-full"
           src="/admin/admin_bg.png"
         />
         <div className="relative z-10">

@@ -88,28 +88,28 @@ const Dashboard = () => {
         </div>
 
         {/* Products Container */}
-        <div className="relative bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25),0px_10px_12px_0px_rgba(0,0,0,0.5)] p-[55px] min-h-[1164px]">
+        
           {/* Tabs and Search */}
           <div className="flex items-center gap-[23px] mb-[40px]">
             {["Semua", "Makanan", "Minuman", "Best Seller"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setSelectedTab(tab)}
-                className={`w-[120px] h-[48px] rounded-[30px] shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] font-roboto font-medium text-[20px] text-white transition-all ${
-                  selectedTab === tab
-                    ? "bg-black/40 border border-white"
-                    : "hover:bg-black/20"
-                }`}
+                className={`w-[120px] h-[48px] rounded-[30px] font-roboto font-bold text-[20px] transition-all active:scale-95 border ${
+            selectedTab === tab
+              ? "bg-[#FFD900] text-[#743B0E] shadow-xl border-white/30"
+              : "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20"
+          }`}
               >
                 {tab}
               </button>
             ))}
 
-            <div className="ml-auto w-[200px] h-[36px] bg-white/70 border border-black/10 rounded-[6px] shadow-[0px_5px_10px_0px_rgba(255,255,255,0.39)] flex items-center px-[8px] gap-[4px]">
+            <div className="ml-auto w-[270px] h-[46px] bg-white/10 backdrop-blur-md border border-white/40 rounded-[6px] shadow-lg flex items-center px-[8px] gap-[4px] group focus-within:bg-white/20 transition-all">
               <input
                 type="text"
                 placeholder="Cari Menu.."
-                className="bg-transparent border-none outline-none flex-1 font-roboto text-[14px] text-black/50"
+                className="bg-transparent border-none outline-none flex-1 font-roboto text-[14px] text-white/50"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -122,7 +122,7 @@ const Dashboard = () => {
             {products.map((product, index) => (
               <div
                 key={product.id}
-                className="h-[420px] rounded-[6px] border border-white bg-gradient-to-b from-transparent to-white/50 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)]"
+                className="h-[420px] rounded-[6px] bg-white/10 backdrop-blur-xl border border-white/20 overflow-hidden relative shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_35px_50px_rgba(0,0,0,0.6)]"
               >
                 <div className="h-[340px] relative overflow-hidden bg-black/20">
                   <img
@@ -139,7 +139,7 @@ const Dashboard = () => {
                     </span>
                   </div>
                 </div>
-                <div className="p-[12px] text-black">
+                <div className="p-[12px] text-white">
                   <h3 className="font-roboto font-bold text-[16px] leading-normal truncate">
                     {product.name}
                   </h3>
@@ -156,7 +156,7 @@ const Dashboard = () => {
             <img alt="" className="w-full opacity-30" src={imgVector200} />
           </div>
         </div>
-      </div>
+      
     </AdminLayout>
   );
 };
