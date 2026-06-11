@@ -101,7 +101,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
                 Nomor Meja
               </p>
               <p className="font-inter font-bold text-[#636364] text-[16px]">
-                {order.tables.name}
+                {order?.tables?.name}
               </p>
             </>
           ) : (

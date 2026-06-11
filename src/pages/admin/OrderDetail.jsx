@@ -74,7 +74,9 @@ const OrderDetail = () => {
               </h3>
               <p className="font-roboto text-[18px] text-white/90">
                 Nama:{" "}
-                <span className="font-medium">{order?.name ?? "N/A"}</span>
+                <span className="font-medium">
+                  {order?.customer_name ?? "N/A"}
+                </span>
               </p>
               <p className="font-roboto text-[18px] text-white/90">
                 {order.table_id ? (

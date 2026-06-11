@@ -30,15 +30,14 @@ const OrderStatus = () => {
   //     setOrders(adminService.getOrders());
   //   }, []);
 
-  const handleStatusChange = (id, newStatus) => {
-    const updatedOrders = adminService.updateOrderStatus(id, newStatus);
-    //  setOrders(updatedOrders);
+  const handleStatusChange = async (id, newStatus) => {
+    const updatedOrders = await editOrder(id, newStatus);
   };
 
   const filteredOrders = orders.filter((order) => {
     const matchesSearch =
       order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.toLowerCase().includes(searchTerm.toLowerCase());
+      order.customer_name?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus =
       filterStatus === "Semua" || order.status === filterStatus;
     return matchesSearch && matchesStatus;
@@ -58,7 +57,9 @@ const OrderStatus = () => {
       case "in_progress":
         return "bg-[#ffd900] text-[#743b0e]";
       case "completed":
-        return "bg-[#743b0e] text-white";
+        return "bg-[#06b139] text-white";
+      case "cancelled":
+        return "bg-gray-600 text-white";
       default:
         return "bg-gray-400 text-white";
     }
@@ -106,9 +107,9 @@ const OrderStatus = () => {
         <div className="flex gap-[32px] mb-[25px]">
           {[
             { label: "Total Pesanan", val: stats.total },
-            { label: "pending", val: stats.menunggu },
-            { label: "in_progress", val: stats.diproses },
-            { label: "completed", val: stats.selesai },
+            { label: "Baru", val: stats.menunggu },
+            { label: "Diproses", val: stats.diproses },
+            { label: "Selesai", val: stats.selesai },
           ].map((stat, i) => (
             <div
               key={i}
@@ -138,9 +139,9 @@ const OrderStatus = () => {
                   onChange={(e) => setFilterStatus(e.target.value)}
                 >
                   <option value="Semua">Semua</option>
-                  <option value="pending">pending</option>
-                  <option value="in_progress">in_progress</option>
-                  <option value="completed">completed</option>
+                  <option value="pending">Pending</option>
+                  <option value="in_progress">Diproses</option>
+                  <option value="completed">Selesai</option>
                 </select>
                 <img
                   src={imgGridiconsDropdown}
@@ -203,10 +204,10 @@ const OrderStatus = () => {
                     className="font-roboto font-medium text-[18px] text-black truncate pr-4"
                     title={order.customer}
                   >
-                    {/* {order.customer} */}-
+                    {order?.customer_name ?? "N/A"}
                   </span>
                   <span className="font-roboto font-medium text-[18px] text-black text-center">
-                    {order.table_id?.slice(0, 8) ?? "-"}
+                    {order?.tables?.name ?? "Take Away"}
                   </span>
                   <span className="font-roboto font-medium text-[18px] text-black text-center">
                     {order.order_items?.length ?? 0}
@@ -225,9 +226,10 @@ const OrderStatus = () => {
                           handleStatusChange(order.id, e.target.value)
                         }
                       >
-                        <option value="pending">pending</option>
-                        <option value="in_progress">in_progress</option>
-                        <option value="completed">completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">Diproses</option>
+                        <option value="completed">Selesai</option>
+                        <option value="cancelled">Dibatalkan</option>
                       </select>
                       <img
                         src={
