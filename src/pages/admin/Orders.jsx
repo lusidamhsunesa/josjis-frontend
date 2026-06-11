@@ -62,7 +62,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
           <p className="font-inter font-bold text-[#5f5f60] text-[16px] truncate max-w-[150px]">
             {order.customer}
           </p>
-          <p className="font-inter text-[#bbbec9] text-[11px] uppercase">
+          <p className="font-inter text-[#343436] text-[11px] uppercase">
             Order {order.id}
           </p>
         </div>
@@ -97,7 +97,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
         <div>
           {order.table_id ? (
             <>
-              <p className="font-inter text-[#bbbec9] text-[11px]">
+              <p className="font-inter text-[#343436] text-[11px]">
                 Nomor Meja
               </p>
               <p className="font-inter font-bold text-[#636364] text-[16px]">
@@ -106,7 +106,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
             </>
           ) : (
             <>
-              <p className="font-inter text-[#bbbec9] text-[11px]">Pesanan</p>
+              <p className="font-inter text-[#343436] text-[11px]">Pesanan</p>
               <p className="font-inter font-bold text-[#636364] text-[16px]">
                 Take Away
               </p>
@@ -114,7 +114,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
           )}
         </div>
         <div>
-          <p className="font-inter text-[#b8bbc6] text-[11px]">
+          <p className="font-inter text-[#343436] text-[11px]">
             Total Pembayaran
           </p>
           <p className="font-inter font-bold text-[#5e5e5f] text-[16px]">
@@ -143,7 +143,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
             }}
             className="flex-1 bg-[#88391f] h-[40px] rounded-[13px] flex items-center justify-center gap-2 hover:bg-[#6d2d18] transition-colors"
           >
-            <img src={imgVector7} alt="" className="size-[20px]" />
+            <img src="/admin/check yellow.svg" alt="" className="size-[20px]" />
             <span className="font-roboto font-medium text-[#ffd900] text-[13px]">
               Terima
             </span>
@@ -157,7 +157,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
             }}
             className="flex-1 bg-green-700 h-[40px] rounded-[13px] flex items-center justify-center gap-2 hover:bg-green-800 transition-colors"
           >
-            <img src={imgVector7} alt="" className="size-[20px]" />
+            <img src="/admin/check white.svg" alt="" className="size-[20px]"  />
             <span className="font-roboto font-medium text-white text-[13px]">
               Selesaikan
             </span>
@@ -170,7 +170,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
           <span className="font-roboto font-medium text-black text-[13px]">
             Detail Pesanan
           </span>
-          <img src={imgVectorArrow} alt="" className="size-[20px]" />
+          <img src={imgVectorArrow} alt="" className="size-[16px]" />
         </button>
       </div>
     </div>
@@ -251,7 +251,7 @@ const Orders = () => {
           ].map((stat, i) => (
             <div
               key={i}
-              className="min-w-[180px] md:min-w-[210px] flex-1 h-[109px] bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-lg p-[19px] flex flex-col justify-between backdrop-blur-md"
+              className="min-w-[180px] md:min-w-[210px] flex-1 h-[109px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] p-[19px] flex flex-col justify-between rounded-[15px]"
             >
               <p className="font-roboto font-semibold text-[18px] md:text-[20px] text-white whitespace-nowrap">
                 {stat.label}
@@ -276,7 +276,7 @@ const Orders = () => {
             <div className="flex flex-col sm:flex-row gap-[12px] w-full xl:w-auto">
               <div className="relative w-full sm:w-auto">
                 <select
-                  className="bg-[#9d8a7e] h-[45px] w-full px-[20px] rounded-[10px] font-roboto font-medium text-[16px] text-white outline-none appearance-none cursor-pointer sm:min-w-[180px] shadow-md pr-[40px]"
+                  className="h-[45px] w-full px-[20px] rounded-[10px] font-roboto font-medium text-[16px] text-white outline-none appearance-none cursor-pointer sm:min-w-[180px] bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_10px_20px_rgba(0,0,0,0.25)] pr-[40px] focus:bg-white/15 transition-all"
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
                 >
@@ -305,7 +305,7 @@ const Orders = () => {
                 <input
                   type="text"
                   placeholder="Cari ID/Customer..."
-                  className="bg-[#9d8a7e] h-[45px] w-full sm:w-[300px] pl-[20px] pr-[45px] rounded-[10px] font-roboto font-medium text-[16px] text-white placeholder:text-white/60 outline-none shadow-md"
+                  className="h-[45px] w-full sm:w-[300px] pl-[20px] pr-[45px] rounded-[10px] font-roboto font-medium text-[16px] text-white placeholder:text-white/60 outline-none bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_10px_20px_rgba(0,0,0,0.25)] focus:bg-white/15 transition-all"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />

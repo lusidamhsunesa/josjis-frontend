@@ -66,7 +66,7 @@ const OrderDetail = () => {
         </div>
 
         {/* Detail Content */}
-        <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25),0px_10px_12px_0px_rgba(0,0,0,0.5)] p-[40px] min-h-[600px]">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] p-[40px] min-h-[600px] rounded-2xl">
           <div className="grid grid-cols-2 gap-[40px]">
             <div className="space-y-[20px]">
               <h3 className="font-roboto font-bold text-[24px] text-white border-b border-white/20 pb-2">
