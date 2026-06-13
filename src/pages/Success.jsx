@@ -16,15 +16,20 @@ const imgTableVector = "https://www.figma.com/api/mcp/asset/d06d522e-ca4d-4ed1-8
 const imgOrderVector = "https://www.figma.com/api/mcp/asset/6391f679-2b8a-4156-aa2a-a484b93660a0";
 const imgRatingSuccessBack = "https://www.figma.com/api/mcp/asset/b240f67a-9bf4-462b-99f2-1affa1c64b46";
 
-const RatingModal = ({ isOpen, onClose }) => {
+const RatingModal = ({ isOpen, onClose, orderId }) => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (rating === 0) return;
-    ratingService.submitRating({ rating, review });
-    setIsSubmitted(true);
+    try {
+      await ratingService.submitRating({ orderId, rating, comment: review });
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Gagal mengirim ulasan:", err);
+      alert("Gagal mengirim ulasan ke server. Silakan coba lagi.");
+    }
   };
 
   if (!isOpen) return null;
@@ -262,6 +267,7 @@ const Success = () => {
       <RatingModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
+        orderId={order?.id}
       />
 
       <style dangerouslySetInnerHTML={{ __html: `

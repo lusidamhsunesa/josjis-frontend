@@ -43,53 +43,29 @@ export const ratingsApi = createApi({
 
     // Endpoint untuk POST /ratings - Menggunakan mutation untuk operasi yang mengubah data (create).
     createRating: builder.mutation({
-      query: (data) => {
-        const formData = new FormData();
-
-        formData.append("name", data.name);
-        formData.append("price", data.price);
-        formData.append("description", data.description);
-        formData.append("category", data.category);
-        formData.append("is_active", data.is_active ? true : false);
-
-        // upload multiple images
-        data.images?.forEach((file) => {
-          formData.append("img", file);
-        });
-
-        return {
-          url: "/ratings",
-          method: "POST",
-          body: formData,
-        };
-      },
+      query: (data) => ({
+        url: "/ratings",
+        method: "POST",
+        body: {
+          orderId: data.orderId,
+          rating: Number(data.rating),
+          comment: data.comment,
+        },
+      }),
       // invalidatesTags: Setelah mutation berhasil, hapus cache dengan tag "Rating" agar query getRatings refetch data terbaru.
       invalidatesTags: ["Rating"],
     }),
 
-    // Endpoint untuk PUT /ratings/:id - Mutation untuk update product berdasarkan ID.
+    // Endpoint untuk PUT /ratings/:id - Mutation untuk update ulasan berdasarkan ID.
     updateRating: builder.mutation({
-      query: ({ id, ...data }) => {
-        const formData = new FormData();
-
-        formData.append("name", data.name);
-        formData.append("price", data.price);
-        formData.append("description", data.description);
-        formData.append("category", data.category);
-        formData.append("is_active", data.is_active ? true : false);
-        formData.append("is_deleted", data.is_deleted ? true : false);
-
-        // kalau ada gambar baru
-        data.images?.forEach((file) => {
-          formData.append("img", file);
-        });
-
-        return {
-          url: `/ratings/${id}`,
-          method: "PUT", // atau "PATCH" tergantung backend
-          body: formData,
-        };
-      },
+      query: ({ id, rating, comment }) => ({
+        url: `/ratings/${id}`,
+        method: "PUT",
+        body: {
+          rating: Number(rating),
+          comment,
+        },
+      }),
       invalidatesTags: ["Rating"],
     }),
 
