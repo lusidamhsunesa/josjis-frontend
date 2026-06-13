@@ -20,7 +20,9 @@ export const cartService = {
       cart.push({
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: typeof product.price === "string"
+          ? Number(product.price.replace(/\./g, ""))
+          : Number(product.price),
         image: product.image,
         quantity: quantity
       });
@@ -57,9 +59,7 @@ export const cartService = {
   getTotalPrice: () => {
     const cart = getStoredCart();
     return cart.reduce((total, item) => {
-      const price = typeof item.price === 'string' 
-        ? parseFloat(item.price.replace(/\./g, '')) 
-        : item.price;
+      const price = Number(String(item.price).replace(/\./g, ""));
       return total + (price * item.quantity);
     }, 0);
   },
