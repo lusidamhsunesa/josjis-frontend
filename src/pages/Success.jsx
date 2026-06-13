@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ratingService } from '../services/ratingService';
+import { api } from "../services/api";
 
 // Figma Assets
 const imgIcon = "https://www.figma.com/api/mcp/asset/98a65a77-22ba-4c9e-86d0-522737d4ebf9";
@@ -112,6 +113,34 @@ const RatingModal = ({ isOpen, onClose }) => {
 const Success = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [order, setOrder] = useState(null);
+
+
+  console.log("ORDER STATE:", order);
+  console.log("TABLE DATA:", order?.tables);
+
+
+      useEffect(() => {
+    const fetchOrder = async () => {
+      const orderId = localStorage.getItem("orderId");
+
+      console.log("ORDER ID:", orderId);
+
+      if (!orderId) return;
+
+      try {
+        const res = await api.get(`/orders/${orderId}`);
+
+        console.log("ORDER RESPONSE:", res.data);
+
+        setOrder(res.data.data);
+      } catch (err) {
+        console.error("Gagal mengambil data order:", err);
+      }
+    };
+
+    fetchOrder();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
@@ -197,7 +226,9 @@ const Success = () => {
                     <img src={imgTableVector} alt="" className="size-[40px] md:size-[54px]" />
                     <div className="text-white text-left">
                        <p className="font-roboto font-medium text-lg md:text-[20px]">Nomor Meja</p>
-                       <p className="font-roboto text-sm md:text-[16px] opacity-80">Meja 12</p>
+                       <p className="font-roboto text-sm md:text-[16px] opacity-80">
+                          {order?.tables?.name}
+                        </p>
                     </div>
                  </div>
 
@@ -206,7 +237,9 @@ const Success = () => {
                     <img src={imgOrderVector} alt="" className="size-[40px] md:size-[54px]" />
                     <div className="text-white text-left">
                        <p className="font-roboto font-medium text-lg md:text-[20px]">ID Pesanan</p>
-                       <p className="font-roboto text-sm md:text-[16px] opacity-80">ORD123456</p>
+                       <p className="font-roboto text-sm md:text-[16px] opacity-80 break-all">
+                          {order?.id}
+                        </p>
                     </div>
                  </div>
               </div>
