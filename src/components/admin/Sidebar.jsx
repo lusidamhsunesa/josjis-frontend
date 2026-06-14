@@ -108,63 +108,74 @@ function EntypoLogOut({ className }) {
 const Sidebar = () => {
   const navigate = useNavigate();
   const menuItems = [
-    {
-      name: "Dashboard",
-      path: "/admin",
-      icon: MaterialSymbolsLightDashboardRounded,
-    },
+    { name: "Dashboard", path: "/admin", icon: MaterialSymbolsLightDashboardRounded },
     { name: "Manajemen Menu", path: "/admin/menu", icon: MaterialSymbolsEdit },
-    { name: "Pesanan", path: "/admin/orders", icon: LetsIconsOrderFill },
+    { name: "Pesanan", path: "/admin/orders", icon: LetsIconsOrderFill, hasBadge: true },
     { name: "Status Pesanan", path: "/admin/status", icon: MingcuteTimeFill },
-    {
-      name: "Rating & Review",
-      path: "/admin/reviews",
-      icon: MaterialSymbolsStarRounded,
-    },
+    { name: "Rating & Review", path: "/admin/reviews", icon: MaterialSymbolsStarRounded },
   ];
 
   const { user, logout } = useAuth();
 
   return (
-    <div className="w-[434px] bg-gradient-to-b from-[#770001] to-[#d90102] h-screen fixed left-0 top-0 border-r border-black overflow-y-auto">
-      <div className="px-[35px] py-[26px]">
-        <h1 className="font-paytone text-[28px] text-white leading-tight w-[288px]">
-          JOS JIS - Dashboard Admin
-        </h1>
+    <div className="w-[360px] bg-gradient-to-b from-[#770001] via-[#770001] via-80% to-[#b30001] h-screen fixed left-0 top-0 border-r border-white/10 flex flex-col justify-between py-10 px-8 text-white z-50">
+      
+      {/* Bagian Atas: Judul & Navigasi */}
+      <div>
+        <div className="mb-8">
+          <h1 className="font-paytone text-3xl font-black uppercase leading-tight tracking-tight">
+            JOS JIS - Dashboard Admin
+          </h1>
+        </div>
+
+        <nav className="flex flex-col">
+          <hr className="border-white/20 mb-3" />
+
+          {menuItems.map((item) => (
+            <React.Fragment key={item.path}>
+              <NavLink
+                to={item.path}
+                end={item.path === "/admin"}
+                className={({ isActive }) =>
+                  `flex items-center justify-between px-4 py-3 rounded-xl transition-all text-white ${
+                    isActive 
+                      ? "bg-white/10 border border-white/20 font-bold" 
+                      : "hover:bg-white/5"
+                  }`
+                }
+              >
+                <div className="flex items-center gap-5">
+                  <item.icon className="size-8 shrink-0" />
+                  <span className="font-roboto font-medium text-xl">
+                    {item.name}
+                  </span>
+                </div>
+
+                {item.hasBadge && (
+                  <span className="bg-[#FFD900] text-[#743B0E] font-roboto font-black text-sm w-7 h-7 rounded-full flex items-center justify-center shadow-md">
+                    2
+                  </span>
+                )}
+              </NavLink>
+
+              <hr className="border-white/10 25 my-2.5" />
+            </React.Fragment>
+          ))}
+        </nav>
       </div>
 
-      <nav className="mt-[50px] px-[35px] space-y-[9px]">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `flex items-center gap-[28px] h-[93px] px-[30px] rounded-[10px] transition-all relative ${
-                isActive
-                  ? "border-3 border-black bg-[rgba(217,217,217,0.5)] shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)]"
-                  : "bg-[rgba(217,217,217,0.5)] shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)]"
-              }`
-            }
-          >
-            <item.icon className="size-[40px] shrink-0" />
-            <span className="font-roboto font-medium text-[25px] text-white">
-              {item.name}
-            </span>
-          </NavLink>
-        ))}
-      </nav>
-
-      <div className="absolute bottom-[66px] left-[35px]">
+      {/* Bagian Bawah: Tombol Keluar */}
+      <div className="pt-4">
         <button
           onClick={logout}
-          className="flex items-center gap-[8px] h-[66px] bg-[rgba(0,0,0,0.55)] border border-black rounded-[10px] pb-[10px] pl-[20px] pr-[21px] pt-[9px] hover:bg-black/70 transition-colors"
+          className="flex items-center gap-3 bg-black/40 border border-white/10 rounded-xl px-6 py-3 hover:bg-black/60 transition-colors w-full justify-start"
         >
-          <EntypoLogOut className="size-[30px] shrink-0" />
-          <span className="font-paytone text-[24px] text-white">Keluar</span>
+          <EntypoLogOut className="size-6 shrink-0" />
+          <span className="font-roboto font-bold text-lg">Keluar</span>
         </button>
       </div>
+
     </div>
-  );
-};
+  );};
 
 export default Sidebar;

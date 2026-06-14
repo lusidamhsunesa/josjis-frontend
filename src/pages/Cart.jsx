@@ -73,6 +73,8 @@ const handleConfirmOrder = async () => {
   }
 };
 
+console.log(cartItems);
+
   return (
     <div className="min-h-screen bg-[#C4C4C4] relative overflow-hidden font-roboto pt-[80px]">
       {/* Background Decor */}
@@ -89,26 +91,7 @@ const handleConfirmOrder = async () => {
       </div>
 
       {/* TOP BAR */}
-      <Navbar> 
-        <button 
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform ml-[20px]"
-        >
-          <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
-        </button>
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Keranjang Belanja
-        </h1>
-      
-
-        {/* Nav Links */}
-        <div className="hidden md:flex ml-auto items-center gap-10 pr-[95px]">
-          <button onClick={() => navigate('/home')} className="text-white hover:text-accent-yellow">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="text-white hover:text-accent-yellow">Menu</button>
-          <div className="bg-[#FFD900] px-4 py-1 rounded-full text-black font-bold">Keranjang</div>
-          <button onClick={() => navigate('/')} className="text-white hover:text-accent-yellow">Keluar</button>
-        </div>
-      </Navbar>
+      <Navbar showBackButton={true} />
 
       <main className="relative z-10 max-w-[1440px] mx-auto p-8 md:px-[170px] py-[60px]">
         {/* Glass Container for Title */}
@@ -141,7 +124,11 @@ const handleConfirmOrder = async () => {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-6">
                            <div className="size-20 rounded-lg overflow-hidden border border-white/20 shadow-sm shrink-0">
-                              <img src={item.image} alt={item.name} className="size-full object-cover" />
+                              <img
+                                src={item?.img_urls?.[0] || import.meta.env.VITE_IMAGE_FALLBACK}
+                                alt={item.name}
+                                className="size-full object-cover"
+                              />
                            </div>
                            <div className="space-y-1">
                               <p className="text-2xl text-black font-medium">{item.name}</p>

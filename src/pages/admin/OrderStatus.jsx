@@ -6,16 +6,16 @@ import { rupiahFormat } from "../../utils/rupiahFormat";
 // Figma Assets
 const imgVector6 = "/admin/hand_meal.svg"; // Hand meal
 const imgVector7 = "/admin/hand_meal.svg"; // Hand meal vector
-const imgGridiconsDropdown = "/admin/dropdown.svg";
+const imgGridiconsDropdown = "/admin/dropdownn.svg";
 const imgGridiconsDropdownWhite = "/admin/dropdown.svg";
 const imgMaterialSymbolsSearch = "/admin/search.svg";
-const imgArrow1 = "/admin/dropdown.svg";
+const imgArrow1 = "/admin/Arrow right.svg";
 
 // Alur Pesanan Icons
 const imgMingcuteTimeFill = "/admin/status.svg";
-const imgFluentTextChangeAccept = "/admin/tick.svg";
-const imgSolarHourglassBold = "/admin/status.svg";
-const imgWeuiDone2Filled = "/admin/tick.svg";
+const imgFluentTextChangeAccept = "/admin/diterima.svg";
+const imgSolarHourglassBold = "/admin/diproses.svg";
+const imgWeuiDone2Filled = "/admin/selesai.svg";
 
 import { useOrders } from "../../services/adminOrders/orderContext";
 
@@ -104,7 +104,7 @@ const OrderStatus = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="flex gap-[32px] mb-[25px]">
+          <div className="flex gap-4 md:gap-[32px] mb-[40px] overflow-x-auto pb-4 scrollbar-hide">
           {[
             { label: "Total Pesanan", val: stats.total },
             { label: "Baru", val: stats.menunggu },
@@ -113,9 +113,10 @@ const OrderStatus = () => {
           ].map((stat, i) => (
             <div
               key={i}
-              className="w-[210px] h-[109px] bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-lg p-[19px] flex flex-col justify-between backdrop-blur-md"
+              className="min-w-[180px] md:min-w-[210px] flex-1 h-[109px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] p-[19px] flex flex-col justify-between rounded-[15px]"
             >
-              <p className="font-roboto font-semibold text-[20px] text-white">
+              <p className="font-roboto font-semibold text-[18px] md:text-[20px] text-white whitespace-nowrap"
+>
                 {stat.label}
               </p>
               <p className="font-roboto font-extrabold text-[25px] text-white leading-none">
@@ -126,15 +127,15 @@ const OrderStatus = () => {
         </div>
 
         {/* Table Section */}
-        <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-lg p-[20px] md:p-[23px] min-h-[600px] backdrop-blur-md overflow-x-auto">
+        <div className="rounded-[15px] border border-white bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)] backdrop-blur-xl shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)] p-[23px] min-h-[600px] overflow-x-auto">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-[24px] gap-4">
             <h3 className="font-roboto font-bold text-[20px] text-white">
               Daftar Status Pesanan
             </h3>
             <div className="flex flex-col sm:flex-row gap-[12px]">
-              <div className="relative w-full sm:w-[141px] h-[35px] sm:h-[30px]">
+              <div className="relative w-full sm:w-[141px] h-[35px] sm:h-[30px] rounded-[10px] overflow-hidden">
                 <select
-                  className="w-full h-full bg-[#9d8a7e] px-[13px] font-roboto font-medium text-[15px] text-white outline-none appearance-none cursor-pointer pr-[30px]"
+                  className="w-full h-full bg-white/10 backdrop-blur-md border border-white/20 px-[13px] font-roboto font-medium text-[15px] text-white outline-none appearance-none cursor-pointer pr-[30px]"
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
                 >
@@ -146,10 +147,10 @@ const OrderStatus = () => {
                 <img
                   src={imgGridiconsDropdown}
                   alt=""
-                  className="absolute right-2 top-1/2 -translate-y-1/2 size-[24px] pointer-events-none rotate-180"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 size-[24px] pointer-events-none"
                 />
               </div>
-              <div className="w-full sm:w-[241px] h-[35px] sm:h-[30px] bg-[#9d8a7e] rounded-[10px] shadow-[0px_10px_6px_rgba(0,0,0,0.25)] flex items-center px-[13px] justify-between">
+              <div className="w-full sm:w-[241px] h-[35px] sm:h-[30px] bg-white/10 backdrop-blur-md border border-white/20 rounded-[10px] shadow-[0px_10px_6px_rgba(0,0,0,0.25)] flex items-center px-[13px] justify-between">
                 <input
                   type="text"
                   placeholder="Cari ID Order/Customer..."
@@ -169,23 +170,23 @@ const OrderStatus = () => {
           {/* Table Content */}
           <div className="min-w-[800px]">
             {/* Table Header */}
-            <div className="grid grid-cols-[120px_1fr_100px_80px_150px_180px] gap-[10px] bg-[#9d8a7e] h-[38px] items-center px-[26px]">
-              <span className="font-roboto font-medium text-[18px] text-black">
+            <div className="grid grid-cols-[120px_1fr_100px_80px_150px_180px] gap-[10px] bg-white/10 backdrop-blur-xl border border-white/20 rounded-t-[15px] h-[54px] items-center px-[26px] shadow-[0_26px_42px_rgba(0,0,0,0.15)] text-white">
+              <span className="font-roboto font-medium text-[18px] text-white">
                 ID Order
               </span>
-              <span className="font-roboto font-medium text-[18px] text-black">
+              <span className="font-roboto font-medium text-[18px] text-white">
                 Customer
               </span>
-              <span className="font-roboto font-medium text-[18px] text-black text-center">
+              <span className="font-roboto font-medium text-[18px] text-white text-center">
                 No Meja
               </span>
-              <span className="font-roboto font-medium text-[18px] text-black text-center">
+              <span className="font-roboto font-medium text-[18px] text-white text-center">
                 Items
               </span>
-              <span className="font-roboto font-medium text-[18px] text-black text-center">
+              <span className="font-roboto font-medium text-[18px] text-white text-center">
                 Total Harga
               </span>
-              <span className="font-roboto font-medium text-[18px] text-black text-center">
+              <span className="font-roboto font-medium text-[18px] text-white text-center">
                 Status Pesanan
               </span>
             </div>
@@ -195,24 +196,26 @@ const OrderStatus = () => {
               {filteredOrders.map((order, index) => (
                 <div
                   key={order.id}
-                  className="grid grid-cols-[120px_1fr_100px_80px_150px_180px] gap-[10px] bg-[rgba(157,138,126,0.5)] h-[55px] items-center px-[26px] hover:bg-[rgba(157,138,126,0.7)] transition-colors"
+                   className="
+                    grid grid-cols-[120px_1fr_100px_80px_150px_180px] gap-[10px] bg-white/5 backdrop-blur-md border border-white/10 h-[55px] items-center px-[26px]
+                    hover:bg-white/10 hover:scale-[1.01] transition-all duration-300"
                 >
-                  <span className="font-roboto font-medium text-[18px] text-black">
+                  <span className="font-roboto font-medium text-[18px] text-white">
                     {order.id.slice(0, 8)}
                   </span>
                   <span
-                    className="font-roboto font-medium text-[18px] text-black truncate pr-4"
+                    className="font-roboto font-medium text-[18px] text-white truncate pr-4"
                     title={order.customer}
                   >
                     {order?.customer_name ?? "N/A"}
                   </span>
-                  <span className="font-roboto font-medium text-[18px] text-black text-center">
+                  <span className="font-roboto font-medium text-[18px] text-white text-center">
                     {order?.tables?.name ?? "Take Away"}
                   </span>
-                  <span className="font-roboto font-medium text-[18px] text-black text-center">
+                  <span className="font-roboto font-medium text-[18px] text-white text-center">
                     {order.order_items?.length ?? 0}
                   </span>
-                  <span className="font-roboto font-medium text-[18px] text-black text-center">
+                  <span className="font-roboto font-medium text-[18px] text-white text-center">
                     {rupiahFormat(order.total_amount ?? 0)}
                   </span>
                   <div className="flex justify-center">
@@ -254,23 +257,23 @@ const OrderStatus = () => {
         </div>
 
         {/* Alur Pesanan Section */}
-        <div className="mt-[40px] bg-[rgba(217,217,217,0.5)] border border-white rounded-[10px] shadow-lg p-[25px] backdrop-blur-md">
-          <h3 className="font-roboto font-bold text-[20px] text-black mb-[35px]">
+        <div className="mt-[40px] rounded-[15px] border border-white bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)] backdrop-blur-xl shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)] p-[25px]">
+          <h3 className="font-roboto font-bold text-[20px] text-white mb-[35px]">
             Alur Pesanan
           </h3>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-[10px] py-[10px]">
             {/* Step 1 */}
-            <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] transition-transform hover:scale-105">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:bg-white/15 hover:scale-105">
               <img
                 src={imgMingcuteTimeFill}
                 alt=""
                 className="size-[46px] mb-2"
               />
-              <p className="font-inter font-medium text-[18px] text-black text-center leading-tight">
+              <p className="font-inter font-medium text-[18px] text-white text-center leading-tight">
                 pending
               </p>
-              <p className="font-inter text-[14px] text-black text-center mt-1">
+              <p className="font-inter text-[14px] text-white text-center mt-1">
                 Order baru masuk
               </p>
             </div>
@@ -283,16 +286,16 @@ const OrderStatus = () => {
             />
 
             {/* Step 2 */}
-            <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] transition-transform hover:scale-105">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:bg-white/15 hover:scale-105">
               <img
                 src={imgFluentTextChangeAccept}
                 alt=""
                 className="size-[46px] mb-2"
               />
-              <p className="font-inter font-medium text-[18px] text-black text-center leading-tight">
+              <p className="font-inter font-medium text-[18px] text-white text-center leading-tight">
                 Diterima
               </p>
-              <p className="font-inter text-[14px] text-black text-center mt-1 leading-tight">
+              <p className="font-inter text-[14px] text-white text-center mt-1 leading-tight">
                 Pesanan diterima
               </p>
             </div>
@@ -305,16 +308,16 @@ const OrderStatus = () => {
             />
 
             {/* Step 3 */}
-            <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] transition-transform hover:scale-105">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:bg-white/15 hover:scale-105">
               <img
                 src={imgSolarHourglassBold}
                 alt=""
                 className="size-[46px] mb-2"
               />
-              <p className="font-inter font-medium text-[18px] text-black text-center leading-tight">
+              <p className="font-inter font-medium text-[18px] text-white text-center leading-tight">
                 in_progress
               </p>
-              <p className="font-inter text-[14px] text-black text-center mt-1 leading-tight">
+              <p className="font-inter text-[14px] text-white text-center mt-1 leading-tight">
                 Sedang disiapkan
               </p>
             </div>
@@ -327,27 +330,20 @@ const OrderStatus = () => {
             />
 
             {/* Step 4 */}
-            <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] transition-transform hover:scale-105">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[20px] p-[20px] flex flex-col items-center w-[150px] md:w-[138px] min-h-[151px] shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:bg-white/15 hover:scale-105">
               <img
                 src={imgWeuiDone2Filled}
                 alt=""
                 className="size-[46px] mb-2"
               />
-              <p className="font-inter font-medium text-[18px] text-black text-center leading-tight">
+              <p className="font-inter font-medium text-[18px] text-white text-center leading-tight">
                 completed
               </p>
-              <p className="font-inter text-[14px] text-black text-center mt-1 leading-tight">
+              <p className="font-inter text-[14px] text-white text-center mt-1 leading-tight">
                 Pesanan selesai
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Action Button */}
-        <div className="mt-8 flex justify-center">
-          <button className="bg-gradient-to-r from-[#d20102] to-[#770001] px-[60px] py-[15px] rounded-[15px] font-roboto font-extrabold text-[30px] text-white shadow-xl hover:scale-105 transition-transform">
-            Simpan
-          </button>
         </div>
       </div>
     </AdminLayout>
