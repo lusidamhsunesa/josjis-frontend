@@ -157,7 +157,7 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
             }}
             className="flex-1 bg-green-700 h-[40px] rounded-[13px] flex items-center justify-center gap-2 hover:bg-green-800 transition-colors"
           >
-            <img src="/admin/check white.svg" alt="" className="size-[20px]"  />
+            <img src="/admin/check white.svg" alt="" className="size-[20px]" />
             <span className="font-roboto font-medium text-white text-[13px]">
               Selesaikan
             </span>
@@ -251,7 +251,7 @@ const Orders = () => {
           ].map((stat, i) => (
             <div
               key={i}
-              className="min-w-[180px] md:min-w-[210px] flex-1 h-[109px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] p-[19px] flex flex-col justify-between rounded-[15px]"
+              className="min-w-[180px] md:min-w-[210px] flex-1 h-[129px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] p-[19px] flex flex-col justify-between rounded-[15px]"
             >
               <p className="font-roboto font-semibold text-[18px] md:text-[20px] text-white whitespace-nowrap">
                 {stat.label}
