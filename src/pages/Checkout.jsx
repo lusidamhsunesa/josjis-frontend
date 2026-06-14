@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import Navbar from "../components/Navbar";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -117,18 +118,7 @@ const Checkout = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 h-[80px] flex items-center px-6 bg-[#770001] z-50">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 bg-[#FFD900] rounded-full"
-        >
-          <img src="/back_arrow.svg" className="w-5 h-5 ml-2"/>
-        </button>
-
-        <h1 className="text-white ml-4 font-bold">
-          Checkout
-        </h1>
-      </header>
+      <Navbar showBack={true} title="Checkout" />
 
       {/* CONTENT */}
       <main className="relative z-10 flex justify-center pb-20 mt-10">

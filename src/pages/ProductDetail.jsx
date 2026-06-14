@@ -4,6 +4,7 @@ import { adminService } from "../services/adminService";
 import { cartService } from "../services/cartService";
 import { rupiahFormat } from "../utils/rupiahFormat";
 import { useGetProductByIdQuery } from "../services/customerProducts/customerProductsApi";
+import Navbar from "../components/Navbar";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -52,45 +53,7 @@ const ProductDetail = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="relative z-20 bg-gradient-to-r from-[#d20102] to-[#770001] h-[80px] flex items-center px-6 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)]">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform ml-[20px]"
-        >
-          <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
-        </button>
-
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Detail Menu
-        </h1>
-
-        <div className="hidden md:flex ml-auto items-center gap-10 bg-[#770001] px-10 py-2 rounded-full mr-[95px]">
-          <button
-            onClick={() => navigate("/home")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Beranda
-          </button>
-          <button
-            onClick={() => navigate("/menu")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Menu
-          </button>
-          <button
-            onClick={() => navigate("/cart")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Keranjang
-          </button>
-          <button
-            onClick={() => navigate("/")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Keluar
-          </button>
-        </div>
-      </header>
+      <Navbar showBack={true} title="Detail Menu" />
 
       <main className="relative z-10 pt-20 pb-20 px-8 md:px-[170px] max-w-[1440px] mx-auto space-y-24">
         {/* Main Product Glass Section */}

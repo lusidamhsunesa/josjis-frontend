@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clock } from 'lucide-react';
+import Navbar from '../components/Navbar';
 
 const PaymentQRIS = () => {
   const navigate = useNavigate();
@@ -26,23 +27,7 @@ const PaymentQRIS = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#dc0002] to-[#770001] h-[80px] flex items-center px-6 shadow-lg">
-        <button 
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform"
-        >
-          <img src="https://www.figma.com/api/mcp/asset/a70c2a39-877f-4624-8da9-8427bbd99dfc" alt="back" className="w-6 h-6" />
-        </button>
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Halaman Pembayaran
-        </h1>
-
-        <div className="hidden md:flex ml-auto items-center gap-10 bg-[#770101] px-6 py-2 rounded-full">
-          <button onClick={() => navigate('/home')} className="text-white hover:text-accent-yellow">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="text-white hover:text-accent-yellow">Menu</button>
-          <button onClick={() => navigate('/')} className="text-white hover:text-accent-yellow">Keluar</button>
-        </div>
-      </header>
+      <Navbar showBack={true} title="Halaman Pembayaran" />
 
       <main className="relative z-10 pt-20">
         {/* Banner Section */}

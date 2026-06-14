@@ -1,18 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ showBack = false, backPath = null, title = '' }) => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (backPath) {
+      navigate(backPath);
+    } else {
+      navigate(-1);
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 h-20 z-50 bg-gradient-to-r from-primary-red via-[#a50101] to-primary-dark-red shadow-lg flex items-center justify-between px-20">
-      <div className="font-paytone text-white text-3xl">
-        JOS JIS
+    <nav className="fixed top-0 left-0 right-0 h-20 z-50 bg-gradient-to-r from-primary-red via-[#a50101] to-primary-dark-red shadow-lg flex items-center justify-between px-6 md:px-20">
+      <div className="flex items-center">
+        {showBack && (
+          <button 
+            onClick={handleBack}
+            className="w-10 h-10 bg-accent-yellow rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform mr-4 cursor-pointer"
+          >
+            <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
+          </button>
+        )}
+        <div className="font-paytone text-white text-2xl md:text-3xl select-none">
+          {title ? `JOS JIS - ${title}` : "JOS JIS"}
+        </div>
       </div>
       
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-4 md:gap-10">
         <NavLink 
           to="/home" 
           className={({ isActive }) => 
-            `font-roboto text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
+            `font-roboto text-sm md:text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
           }
         >
           Beranda
@@ -20,7 +40,7 @@ const Navbar = () => {
         <NavLink 
           to="/menu" 
           className={({ isActive }) => 
-            `font-roboto text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
+            `font-roboto text-sm md:text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
           }
         >
           Menu
@@ -28,7 +48,7 @@ const Navbar = () => {
         <NavLink 
           to="/cart" 
           className={({ isActive }) => 
-            `font-roboto text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
+            `font-roboto text-sm md:text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
           }
         >
           Keranjang
@@ -36,14 +56,14 @@ const Navbar = () => {
         <NavLink 
           to="/status" 
           className={({ isActive }) => 
-            `font-roboto text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
+            `font-roboto text-sm md:text-lg transition-colors ${isActive ? 'text-black bg-accent-yellow px-4 py-1 rounded-full' : 'text-white hover:text-accent-yellow'}`
           }
         >
           Pesanan
         </NavLink>
         <NavLink 
           to="/" 
-          className="font-roboto text-lg text-white hover:text-accent-yellow transition-colors"
+          className="font-roboto text-sm md:text-lg text-white hover:text-accent-yellow transition-colors"
         >
           Keluar
         </NavLink>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const PaymentCash = () => {
   const navigate = useNavigate();
@@ -9,23 +10,7 @@ const PaymentCash = () => {
     <div className="min-h-screen relative overflow-x-hidden font-roboto bg-black pt-[80px]">
 
       {/* HEADER / TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#d40002] to-[#770001] h-[80px] flex items-center px-6 shadow-lg border-b border-white/5">
-        <button
-          onClick={() => navigate('/checkout')}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md ml-[20px] hover:scale-110 transition-transform"
-        >
-          <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
-        </button>
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Halaman Pembayaran
-        </h1>
-
-        <div className="hidden md:flex ml-auto items-center gap-10 bg-[#770101] px-10 py-2 rounded-full mr-[95px] text-white border border-white/10 shadow-lg">
-          <button onClick={() => navigate('/home')} className="hover:text-accent-yellow transition-colors font-roboto">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="hover:text-accent-yellow transition-colors font-roboto">Menu</button>
-          <button onClick={() => navigate('/')} className="hover:text-accent-yellow transition-colors font-roboto">Keluar</button>
-        </div>
-      </header>
+      <Navbar showBack={true} backPath="/checkout" title="Halaman Pembayaran" />
 
       {/* HERO SECTION */}
       <div className="relative h-[382px] w-full overflow-hidden flex flex-col items-center justify-center text-center px-8">

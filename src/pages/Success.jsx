@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ratingService } from '../services/ratingService';
 import { api } from "../services/api";
+import Navbar from '../components/Navbar';
 
 // Figma Assets
 const imgIcon = "https://www.figma.com/api/mcp/asset/98a65a77-22ba-4c9e-86d0-522737d4ebf9";
@@ -156,20 +157,7 @@ const Success = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#dc0002] to-[#770001] h-[80px] flex items-center px-6 shadow-lg">
-        <button 
-          onClick={() => navigate('/home')}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform"
-        >
-          <img src={imgIcon} alt="back" className="w-6 h-6" />
-        </button>
-        <div className="hidden md:flex ml-auto items-center gap-10 font-roboto text-white text-[16px]">
-          <button onClick={() => navigate('/home')} className="hover:text-[#FFD900]">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="hover:text-[#FFD900]">Menu</button>
-          <button onClick={() => navigate('/status')} className="hover:text-[#FFD900]">Pesanan</button>
-          <button onClick={() => navigate('/')} className="hover:text-[#FFD900]">Keluar</button>
-        </div>
-      </header>
+      <Navbar showBack={true} backPath="/home" title="Pesanan Berhasil" />
 
       <main className="relative z-10 pt-[80px]">
         {/* Banner Section */}
