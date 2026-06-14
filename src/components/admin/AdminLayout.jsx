@@ -5,7 +5,7 @@ const AdminLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-black flex">
       <Sidebar />
-      <main className="ml-[434px] flex-1 min-h-screen relative overflow-hidden">
+            <main className="ml-[360px] flex-1 min-h-screen relative overflow-hidden">
         {/* Background image for admin content */}
         <img
           alt=""

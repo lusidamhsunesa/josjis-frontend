@@ -1,12 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ showBackButton = false }) => {
+  const navigate = useNavigate();
   return (
     <nav className="fixed top-0 left-0 right-0 h-20 z-50 bg-gradient-to-r from-primary-red via-[#a50101] to-primary-dark-red shadow-lg flex items-center justify-between px-20">
-      <div className="font-paytone text-white text-3xl">
-        JOS JIS
-      </div>
+      <div className="flex items-center gap-4">
+          {showBackButton && (
+            <button
+              onClick={() => navigate(-1)}
+              className="
+               -ml-12
+                w-10 h-10
+                bg-[#FFD900]
+                rounded-full
+                flex items-center justify-center
+                hover:scale-110
+                transition-all
+              "
+            >
+              <img
+                src="/back_arrow.svg"
+                alt="Back"
+                className="w-5 h-5"
+              />
+            </button>
+          )}
+
+  <div className="font-paytone text-white text-3xl">
+    JOS JIS
+  </div>
+</div>
       
       <div className="flex items-center gap-10">
         <NavLink 

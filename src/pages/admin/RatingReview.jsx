@@ -96,7 +96,7 @@ const RatingReview = () => {
         </div>
 
         {/* Reviews List */}
-        <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25),0px_10px_12px_0px_rgba(0,0,0,0.5)] p-[30px] min-h-[800px] space-y-[20px]">
+        <div className="rounded-[15px] border border-white bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)] backdrop-blur-xl shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)] p-[30px] min-h-[800px] space-y-[20px]">
           {ratings?.map((review, i) => (
             <div
               key={i}

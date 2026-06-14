@@ -23,7 +23,7 @@ export const cartService = {
         price: typeof product.price === "string"
           ? Number(product.price.replace(/\./g, ""))
           : Number(product.price),
-        image: product.image,
+        img_urls: product.img_urls,
         quantity: quantity
       });
     }
