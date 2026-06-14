@@ -1,59 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
+import { useRatings } from "../../services/adminRating/ratingsContext";
+import { useGetOrdersQuery } from "../../services/adminOrders/ordersApi";
 
 const imgVector = "/admin/reviews.svg"; // Star icon
 const imgVector3 = "/admin/hand_meal.svg";
 
-import { useRatings } from "../../services/adminRating/ratingsContext";
-
-const INITIAL_REVIEWS = [
-  {
-    name: "Alex Trie",
-    rating: 5,
-    comment:
-      "Penyetan ayamnya enak banget, sambalnya pedas mantap! Service juga cepat.",
-  },
-  {
-    name: "Budi Santoso",
-    rating: 4,
-    comment:
-      "Lele gorengnya garing, nasi hangat. Cuma sayang tadi nunggunya agak lama pas ramai.",
-  },
-  {
-    name: "Siti Aminah",
-    rating: 5,
-    comment: "Langganan terus di sini, harga terjangkau rasa bintang lima!",
-  },
-  {
-    name: "Dedi Kurniawan",
-    rating: 3,
-    comment: "Rasa oke, tapi es tehnya kurang manis tadi.",
-  },
-];
-
 const RatingReview = () => {
-  const [reviews, setReviews] = useState([]);
-  const [pendingOrdersCount, setPendingOrdersCount] = useState(0);
-  const { ratings, meta, isLoading, query, setQuery } = useRatings();
-  const { page, search, limit } = query;
+  const { ratings, isLoading } = useRatings();
+  const { data: ordersData } = useGetOrdersQuery({ status: "pending" });
+  
+  const pendingOrdersCount = ordersData?.data?.orders?.length || 0;
 
-  useEffect(() => {
-    const stored = localStorage.getItem("admin_reviews");
-    if (stored) {
-      setReviews(JSON.parse(stored));
-    } else {
-      localStorage.setItem("admin_reviews", JSON.stringify(INITIAL_REVIEWS));
-      setReviews(INITIAL_REVIEWS);
-    }
-
-    // Get pending orders count
-    const orders = JSON.parse(localStorage.getItem("admin_orders") || "[]");
-    setPendingOrdersCount(orders.filter((o) => o.status === "Menunggu").length);
-  }, []);
-
-  const averageRating = (
-    reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
-  ).toFixed(1);
+  const averageRating = ratings && ratings.length > 0
+    ? (ratings.reduce((acc, r) => acc + Number(r.rating), 0) / ratings.length).toFixed(1)
+    : "0.0";
 
   return (
     <AdminLayout>
@@ -97,35 +58,45 @@ const RatingReview = () => {
 
         {/* Reviews List */}
         <div className="bg-[rgba(217,217,217,0.5)] border border-white rounded-[15px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25),0px_10px_12px_0px_rgba(0,0,0,0.5)] p-[30px] min-h-[800px] space-y-[20px]">
-          {ratings?.map((review, i) => (
-            <div
-              key={i}
-              className="bg-white/80 border border-black/10 rounded-[10px] p-[20px] shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="flex justify-between items-center mb-[10px]">
-                <h4 className="font-roboto font-bold text-[18px] text-black">
-                  {review?.name ?? "anonymous"}
-                </h4>
-                <div className="flex">
-                  {[...Array(5)].map((_, star) => (
-                    <div
-                      key={star}
-                      className="size-[20px] relative flex items-center justify-center"
-                    >
-                      <img
-                        alt="star"
-                        src={imgVector}
-                        className={`size-full object-contain ${star < review.rating ? "opacity-100" : "opacity-20"}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <p className="font-roboto text-[16px] text-black/80 italic">
-                "{review.comment}"
-              </p>
+          {isLoading ? (
+            <div className="h-[200px] flex items-center justify-center text-white font-roboto text-[18px]">
+              Memuat ulasan...
             </div>
-          ))}
+          ) : ratings && ratings.length > 0 ? (
+            ratings.map((review, i) => (
+              <div
+                key={review.id || i}
+                className="bg-white/80 border border-black/10 rounded-[10px] p-[20px] shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex justify-between items-center mb-[10px]">
+                  <h4 className="font-roboto font-bold text-[18px] text-black">
+                    {review?.name || review?.orders?.customer_name || "Pelanggan"}
+                  </h4>
+                  <div className="flex">
+                    {[...Array(5)].map((_, star) => (
+                      <div
+                        key={star}
+                        className="size-[20px] relative flex items-center justify-center"
+                      >
+                        <img
+                          alt="star"
+                          src={imgVector}
+                          className={`size-full object-contain ${star < review.rating ? "opacity-100" : "opacity-20"}`}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="font-roboto text-[16px] text-black/80 italic">
+                  "{review.comment}"
+                </p>
+              </div>
+            ))
+          ) : (
+            <div className="h-[200px] flex items-center justify-center text-white/70 font-roboto text-[18px]">
+              Belum ada ulasan dari pelanggan.
+            </div>
+          )}
         </div>
       </div>
     </AdminLayout>
