@@ -130,7 +130,7 @@ const OrderStatusCustomer = () => {
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden font-roboto pt-[80px]">
-      <Navbar />
+      <Navbar showBackButton={true} />
       
       {/* Background Main */}
       <div className="absolute inset-0 z-0 pointer-events-none">

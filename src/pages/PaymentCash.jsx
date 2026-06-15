@@ -1,37 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const PaymentCash = () => {
   const navigate = useNavigate();
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden font-roboto bg-black pt-[80px]">
+    <div className="min-h-screen relative overflow-x-hidden font-roboto bg-white pt-[80px]">
 
       {/* HEADER / TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#d40002] to-[#770001] h-[80px] flex items-center px-6 shadow-lg border-b border-white/5">
-        <button
-          onClick={() => navigate('/checkout')}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md ml-[20px] hover:scale-110 transition-transform"
-        >
-          <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
-        </button>
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Halaman Pembayaran
-        </h1>
-
-        <div className="hidden md:flex ml-auto items-center gap-10 bg-[#770101] px-10 py-2 rounded-full mr-[95px] text-white border border-white/10 shadow-lg">
-          <button onClick={() => navigate('/home')} className="hover:text-accent-yellow transition-colors font-roboto">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="hover:text-accent-yellow transition-colors font-roboto">Menu</button>
-          <button onClick={() => navigate('/')} className="hover:text-accent-yellow transition-colors font-roboto">Keluar</button>
-        </div>
-      </header>
+      <Navbar showBackButton={true} />
 
       {/* HERO SECTION */}
       <div className="relative h-[382px] w-full overflow-hidden flex flex-col items-center justify-center text-center px-8">
         <div className="absolute inset-0 z-0">
-          <img src="/user-cash.png" alt="" className="w-full h-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-black/40" />
+          <img src="/section cash.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0" />
         </div>
 
         <div className="relative z-10 text-white space-y-6 max-w-2xl pt-[20px]">
@@ -54,11 +39,11 @@ const PaymentCash = () => {
         {/* Background Overlay - Continuous from Hero (Node 2:2646) */}
         <div className="absolute inset-0 z-0 bg-[#770001]">
           <img
-            src="/cash_bg_bottom.png"
+            src="/cash bg 2.png"
             alt=""
             className="w-full h-full object-cover opacity-70"
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0" />
         </div>
 
         {/* Unified Main Glass Container (Instructions + Details) */}
@@ -75,16 +60,16 @@ const PaymentCash = () => {
 
             {/* Right: Payment Details Area (Now inside the same glass box) */}
             <div className=" rounded-[20px] shadow-2xl p-10 space-y-10  backdrop-blur-md">
-              <h4 className="font-roboto font-bold text-[32px] text-black text-center border-b border-black/10 pb-6 uppercase tracking-tight">Detail Pembayaran</h4>
+              <h4 className="font-roboto font-bold text-[32px] text-white text-center border-b border-black/10 pb-6 uppercase tracking-tight">Detail Pembayaran</h4>
 
               <div className="space-y-6">
                 {/* Merchant Row */}
                 <div className="flex items-center gap-6  border-black/10 rounded-[6px] p-4 ">
                   <img src="/cash_merchant_logo.png" alt="Merchant" className="w-[100px] h-[100px] object-cover rounded-md shadow-sm" />
                   <div className="flex flex-col gap-1">
-                    <p className="font-medium text-[20px] text-black">Metode Pembayaran: <span className="font-bold">Tunai</span></p>
-                    <p className="text-[15px] text-black/70">Nama Merchant: <span className="font-medium">Josjis</span></p>
-                    <div className="text-[16px] text-black/70 leading-relaxed">
+                    <p className="font-medium text-[20px] text-white">Metode Pembayaran: <span className="font-bold">Tunai</span></p>
+                    <p className="text-[15px] text-white/70">Nama Merchant: <span className="font-medium">Josjis</span></p>
+                    <div className="text-[16px] text-white/70 leading-relaxed">
                       <p>Meja nomor: 12</p>
                       <p>Jenis pesanan: Makan di tempat</p>
                     </div>
@@ -95,18 +80,18 @@ const PaymentCash = () => {
                 <div className="space-y-4 pt-4">
                   <div className="flex items-center justify-between group">
                     <div className="flex items-center gap-4">
-                      <div className="size-[60px] bg-black/5 rounded-full flex items-center justify-center text-3xl shadow-inner">💳</div>
-                      <span className="text-[20px] text-black/80 font-medium font-roboto">Jumlah</span>
+                      <div className="size-[60px] bg-white/5 rounded-full flex items-center justify-center text-3xl shadow-inner">💳</div>
+                      <span className="text-[20px] text-white/80 font-medium font-roboto">Jumlah</span>
                     </div>
-                    <span className="text-[24px] font-bold text-black font-roboto">Rp 54.000</span>
+                    <span className="text-[24px] font-bold text-white font-roboto">Rp 54.000</span>
                   </div>
 
                   <div className="flex items-center justify-between group">
                     <div className="flex items-center gap-4">
                       <div className="size-[60px] bg-black/5 rounded-full flex items-center justify-center text-3xl shadow-inner">📅</div>
-                      <span className="text-[20px] text-black/80 font-medium font-roboto">Tanggal</span>
+                      <span className="text-[20px] text-white/80 font-medium font-roboto">Tanggal</span>
                     </div>
-                    <span className="text-[20px] font-medium text-black font-roboto">{today}</span>
+                    <span className="text-[20px] font-medium text-white font-roboto">{today}</span>
                   </div>
                 </div>
               </div>
