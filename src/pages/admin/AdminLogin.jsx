@@ -29,37 +29,15 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-black">
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <img
-        src="/admin_login_bg.png"
+        src="/Login admin.png"
         alt=""
         className="absolute inset-0 size-full object-cover pointer-events-none"
       />
 
-      {/* Decorative Elements */}
-      <div className="absolute h-[950px] left-[10px] top-[-407px] w-[672px] opacity-40">
-        <img
-          alt=""
-          className="size-full object-cover pointer-events-none"
-          src="/admin_login_decor.png"
-        />
-      </div>
-      <div className="absolute h-[477px] left-[299px] top-[512px] w-[337px] opacity-40">
-        <img
-          alt=""
-          className="size-full object-cover pointer-events-none"
-          src="/admin_login_decor.png"
-        />
-      </div>
-      <div className="absolute h-[816px] left-[1123px] top-[68px] w-[577px] opacity-40">
-        <img
-          alt=""
-          className="size-full object-cover pointer-events-none"
-          src="/admin_login_decor.png"
-        />
-      </div>
-
+      
       {/* Login Card */}
       <div className="relative z-20 w-full max-w-[588px] h-[718px] rounded-[40px] border border-white/0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md shadow-[0_0_42px_rgba(0,0,0,0.58),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] flex flex-col items-center pt-[100px] px-12 animate-slide-up">
         <h1 className="font-poppins font-semibold text-[36px] text-white mb-[75px] drop-shadow-md">

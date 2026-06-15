@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ratingService } from '../services/ratingService';
 import { api } from "../services/api";
+import Navbar from '../components/Navbar';
 
 // Figma Assets
 const imgIcon = "https://www.figma.com/api/mcp/asset/98a65a77-22ba-4c9e-86d0-522737d4ebf9";
 const imgImage14 = "https://www.figma.com/api/mcp/asset/53442139-540d-4d9b-a17e-da275d82e503";
-const imgSection = "https://www.figma.com/api/mcp/asset/aecb0aa2-ee49-4826-9a2a-b5e651a8506b";
-const imgImage22 = "https://www.figma.com/api/mcp/asset/ac9d7d22-e922-4f52-8a08-c9742c2aa462";
+const imgSection = "/section header success.png";
+const imgImage22 = "/food in container.png";
 const imgImage27 = "https://www.figma.com/api/mcp/asset/f6541990-3822-47aa-884b-9f0d9421f1dd";
 const imgVector200 = "https://www.figma.com/api/mcp/asset/c17b78f8-3e19-48f9-9ca9-f0454ec3fcc7";
 const imgVector201 = "https://www.figma.com/api/mcp/asset/a20f1ab2-f678-4c2f-acd2-b9f1135fee01";
 const imgVector202 = "https://www.figma.com/api/mcp/asset/fc55a6e9-1efe-49b2-b037-2a33bec3e0db";
-const imgTableVector = "https://www.figma.com/api/mcp/asset/d06d522e-ca4d-4ed1-878d-4c1651f967c6";
-const imgOrderVector = "https://www.figma.com/api/mcp/asset/6391f679-2b8a-4156-aa2a-a484b93660a0";
+const imgTableVector = "/meja.svg";
+const imgOrderVector = "/ordericon.svg";
 const imgRatingSuccessBack = "https://www.figma.com/api/mcp/asset/b240f67a-9bf4-462b-99f2-1affa1c64b46";
 
 const RatingModal = ({ isOpen, onClose, orderId }) => {
@@ -107,6 +108,7 @@ const RatingModal = ({ isOpen, onClose, orderId }) => {
               className="mt-12 font-paytone text-[#FFD900] text-xl hover:underline"
             >
               Kembali ke Beranda
+                <img src="/back button.svg" alt="Home" className="w-7 h-7" />
             </button>
           </div>
         )}
@@ -155,21 +157,7 @@ const Success = () => {
         <div className="absolute inset-0 bg-[#d20102]/20" />
       </div>
 
-      {/* TOP BAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#dc0002] to-[#770001] h-[80px] flex items-center px-6 shadow-lg">
-        <button 
-          onClick={() => navigate('/home')}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform"
-        >
-          <img src={imgIcon} alt="back" className="w-6 h-6" />
-        </button>
-        <div className="hidden md:flex ml-auto items-center gap-10 font-roboto text-white text-[16px]">
-          <button onClick={() => navigate('/home')} className="hover:text-[#FFD900]">Beranda</button>
-          <button onClick={() => navigate('/menu')} className="hover:text-[#FFD900]">Menu</button>
-          <button onClick={() => navigate('/status')} className="hover:text-[#FFD900]">Pesanan</button>
-          <button onClick={() => navigate('/')} className="hover:text-[#FFD900]">Keluar</button>
-        </div>
-      </header>
+      <Navbar showBackButton={true} />
 
       <main className="relative z-10 pt-[80px]">
         {/* Banner Section */}
@@ -195,9 +183,13 @@ const Success = () => {
               </button>
             </div>
             
-            <div className="w-full md:flex-1 h-[250px] md:h-[400px] rounded-[20px] border border-black overflow-hidden relative shadow-2xl">
-              <img src={imgImage22} alt="" className="w-full h-full object-cover" />
-            </div>
+            <div className="inline-flex justify-center translate-x-[-250px] h-[300px] md:h-[360px] rounded-[20px] border border-black overflow-hidden shadow-2xl flex items-center justify-center">
+            <img 
+              src={imgImage22} 
+              alt="" 
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
           </div>
           
         </section>

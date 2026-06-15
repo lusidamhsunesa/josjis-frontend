@@ -119,7 +119,9 @@ const Dashboard = () => {
 
           {/* Product Grid */}
           <div className="grid grid-cols-3 gap-x-[40px] gap-y-[40px]">
-            {products.map((product, index) => (
+            {products
+              .filter((product) => !product.is_deleted)
+              .map((product, index) => (
               <div
                 key={product.id}
                 className="h-[420px] rounded-[6px] bg-white/10 backdrop-blur-xl border border-white/20 overflow-hidden relative shadow-[0_26px_42px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_35px_50px_rgba(0,0,0,0.6)]"
