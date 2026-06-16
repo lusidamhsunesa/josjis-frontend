@@ -26,15 +26,20 @@ const Menu = () => {
     setAllProducts(adminService.getMenu());
   }, []);
 
-  const filteredProducts = products.filter((p) => {
+    const filteredProducts = products.filter((p) => {
+    // Soft Delete Filter
+    if (p.is_deleted) return false;
+
     const matchesCategory =
       activeCategory === "semua" ||
       (activeCategory === "makanan" && p.category === "Makanan") ||
       (activeCategory === "minuman" && p.category === "Minuman") ||
       (activeCategory === "bestseller" && p.isBestSeller);
+
     const matchesSearch = p.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
+
     return matchesCategory && matchesSearch;
   });
 
