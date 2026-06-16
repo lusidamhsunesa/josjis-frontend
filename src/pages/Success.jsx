@@ -6,10 +6,10 @@ import Navbar from '../components/Navbar';
 
 // Figma Assets
 const imgIcon = "https://www.figma.com/api/mcp/asset/98a65a77-22ba-4c9e-86d0-522737d4ebf9";
-const imgImage14 = "https://www.figma.com/api/mcp/asset/53442139-540d-4d9b-a17e-da275d82e503";
+const imgImage14 = "/bg success black.png";
 const imgSection = "/section header success.png";
 const imgImage22 = "/food in container.png";
-const imgImage27 = "https://www.figma.com/api/mcp/asset/f6541990-3822-47aa-884b-9f0d9421f1dd";
+const imgImage27 = "/cook image.png";
 const imgVector200 = "https://www.figma.com/api/mcp/asset/c17b78f8-3e19-48f9-9ca9-f0454ec3fcc7";
 const imgVector201 = "https://www.figma.com/api/mcp/asset/a20f1ab2-f678-4c2f-acd2-b9f1135fee01";
 const imgVector202 = "https://www.figma.com/api/mcp/asset/fc55a6e9-1efe-49b2-b037-2a33bec3e0db";
@@ -152,9 +152,12 @@ const Success = () => {
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
       {/* Background Decor Bottom */}
-      <div className="absolute inset-0 top-[598px] z-0 opacity-70 pointer-events-none">
-        <img src={imgImage14} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[#d20102]/20" />
+      <div className="absolute inset-0 top-[598px] z-0 pointer-events-none">
+        <img
+          src={imgImage14}
+          alt=""
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <Navbar showBackButton={true} />

@@ -27,14 +27,19 @@ const Home = () => {
   }, []);
 
   const filteredProducts = products.filter((product) => {
+    // Filter soft delete
+    if (product.is_deleted) return false;
+
     const matchesSearch = product.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
+
     const matchesCategory =
       selectedCategory === "Semua" ||
       (selectedCategory === "Best Seller"
         ? product.isBestSeller
         : product.category === selectedCategory);
+
     return matchesSearch && matchesCategory;
   });
 
