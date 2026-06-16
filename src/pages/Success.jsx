@@ -5,7 +5,7 @@ import { api } from "../services/api";
 import Navbar from '../components/Navbar';
 
 // Figma Assets
-const imgIcon = "https://www.figma.com/api/mcp/asset/98a65a77-22ba-4c9e-86d0-522737d4ebf9";
+const imgIcon = "/back button.svg";
 const imgImage14 = "/bg success black.png";
 const imgSection = "/section header success.png";
 const imgImage22 = "/food in container.png";
@@ -108,7 +108,6 @@ const RatingModal = ({ isOpen, onClose, orderId }) => {
               className="mt-12 font-paytone text-[#FFD900] text-xl hover:underline"
             >
               Kembali ke Beranda
-                <img src="/back button.svg" alt="Home" className="w-7 h-7" />
             </button>
           </div>
         )}

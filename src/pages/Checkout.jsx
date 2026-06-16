@@ -93,6 +93,10 @@ const createOrder = async () => {
       throw new Error("Order ID tidak ditemukan");
     }
 
+    localStorage.setItem("orderId", orderId);
+
+    console.log("ORDER ID:", orderId);
+
     return orderId;
 
 
@@ -143,11 +147,7 @@ const handleCash = async () => {
 
     if (!orderId) return;
 
-    navigate("/payment/cash", {
-      state: {
-        orderId,
-      },
-    });
+    navigate("/payment/cash");
   } catch (error) {
     console.error(error);
 

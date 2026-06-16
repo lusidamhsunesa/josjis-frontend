@@ -4,6 +4,7 @@ import AdminLayout from "../../components/admin/AdminLayout";
 import { adminService } from "../../services/adminService";
 import { rupiahFormat } from "../../utils/rupiahFormat";
 import ProductFormModal from "./AddEditMenu";
+import NewOrdersButton from "../../components/admin/NewOrdersButton";
 
 const imgVector7 = "/admin/hand_meal.svg";
 const imgGridiconsDropdown = "/admin/dropdown.svg";
@@ -90,28 +91,7 @@ const ManagementMenu = () => {
             </p>
           </div>
 
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/admin/orders")}
-          >
-            <div className="w-[173px] h-[45px] mt-[10px] bg-[#ffd900] rounded-[10px] border border-black/20 shadow-sm overflow-hidden flex items-center pl-[11px] gap-2">
-              <div className="size-[24px]">
-                <img
-                  alt=""
-                  src={imgVector7}
-                  className="size-full object-contain"
-                />
-              </div>
-              <span className="font-roboto font-extrabold text-[18px] text-[#743b0e]">
-                Pesanan Baru
-              </span>
-            </div>
-            <div className="absolute -top-[10px] -right-[9px] size-[30px] bg-[#ffd900] rounded-full border border-black/20 flex items-center justify-center shadow-md">
-              <span className="absolute inset-0 flex items-center justify-center font-roboto font-medium text-[18px] text-[#743b0e]">
-                {pendingOrdersCount}
-              </span>
-            </div>
-          </div>
+          <NewOrdersButton />
         </div>
 
         {/* Stats Section */}

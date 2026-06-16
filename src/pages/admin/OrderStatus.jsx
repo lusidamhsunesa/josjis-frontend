@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
 import { adminService } from "../../services/adminService";
 import { rupiahFormat } from "../../utils/rupiahFormat";
+import NewOrdersButton from "../../components/admin/NewOrdersButton";
 
 // Figma Assets
 const imgVector6 = "/admin/hand_meal.svg"; // Hand meal
 const imgVector7 = "/admin/hand_meal.svg"; // Hand meal vector
-const imgGridiconsDropdown = "/admin/dropdownn.svg";
-const imgGridiconsDropdownWhite = "/admin/dropdown.svg";
+const imgGridiconsDropdown = "/admin/black dropdwon.svg";
+const imgGridiconsDropdownWhite = "/admin/black dropdwon.svg";
 const imgMaterialSymbolsSearch = "/admin/search.svg";
 const imgArrow1 = "/admin/Arrow right.svg";
 
@@ -57,7 +58,7 @@ const OrderStatus = () => {
       case "in_progress":
         return "bg-[#ffd900] text-[#743b0e]";
       case "completed":
-        return "bg-[#06b139] text-white";
+        return "bg-brown text-white";
       case "cancelled":
         return "bg-gray-600 text-white";
       default:
@@ -79,28 +80,7 @@ const OrderStatus = () => {
             </p>
           </div>
 
-          <div
-            className="relative mt-[15px] cursor-pointer"
-            onClick={() => (window.location.href = "/admin/orders")}
-          >
-            <div className="w-[173px] h-[45px] relative bg-[#ffd900] rounded-[10px] border border-black/20 shadow-sm overflow-hidden flex items-center pl-[11px] gap-2">
-              <div className="size-[24px]">
-                <img
-                  src={imgVector7}
-                  alt=""
-                  className="size-full object-contain"
-                />
-              </div>
-              <span className="font-roboto font-extrabold text-[18px] text-[#743b0e]">
-                Pesanan Baru
-              </span>
-            </div>
-            <div className="absolute -top-[18px] -right-[9px] size-[30px] flex items-center justify-center bg-[#ffd900] rounded-full border border-black/20 shadow-md">
-              <span className="relative z-10 font-roboto font-medium text-[18px] text-[#743b0e] pt-[2px]">
-                {stats.menunggu}
-              </span>
-            </div>
-          </div>
+          <NewOrdersButton />
         </div>
 
         {/* Stats Section */}
