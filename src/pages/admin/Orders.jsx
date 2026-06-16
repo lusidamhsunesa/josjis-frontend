@@ -124,11 +124,11 @@ const OrderCard = ({ order, onUpdateStatus, onDetail }) => {
       </div>
 
       {/* Notes */}
-      {order.notes && (
+      {order?.order_items?.[0]?.notes && (
         <div className="mt-3">
           <p className="font-inter text-[#babcc7] text-[11px]">Order Notes</p>
           <p className="font-inter text-[#747576] text-[12px] italic line-clamp-2 leading-tight">
-            {order.notes}
+            {order?.order_items?.[0]?.notes}
           </p>
         </div>
       )}
