@@ -116,7 +116,12 @@ const ManagementMenu = () => {
 
         {/* Stats Section */}
         <div className="flex gap-[120px] mb-[35px]">
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px]
+              border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
                <img src="/admin/orders.svg" className="w-[43px] h-[43px]" />
             </div>
@@ -129,7 +134,12 @@ const ManagementMenu = () => {
               </p>
             </div>
           </div>
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px]
+              border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
               <img src="/admin/makanan.svg" className="w-[46px] h-[46px]" />
             </div>
@@ -142,7 +152,11 @@ const ManagementMenu = () => {
               </p>
             </div>
           </div>
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px] border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
               <img src="/admin/minuman.svg" className="w-[46px] h-[46px]" />
             </div>

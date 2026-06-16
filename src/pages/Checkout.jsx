@@ -16,84 +16,30 @@ const Checkout = () => {
    const [orderType, setOrderType] = useState("dine_in"); // default: Dine In
    const [notes, setNotes] = useState("");
 
-  const orderId = localStorage.getItem('orderId');
+  useEffect(() => {
+    fetchTables();
 
-useEffect(() => {
-  const initCheckout = async () => {
-    setLoading(true);
-    await fetchOrder();
-    await fetchTables(); // Ambil data meja
+    const cartData = JSON.parse(
+      localStorage.getItem("cartItems") || "[]"
+    );
+
+    setOrder({
+      order_items: cartData,
+      total_amount: cartData.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      ),
+    });
+
     setLoading(false);
-  };
-  initCheckout();
-}, []);
+  }, []);
 
-  const fetchOrder = async () => {
-    try {
-      if (!orderId) {
-        alert("Order tidak ditemukan. Silakan ulang dari cart.");
-        navigate('/cart');
-        return;
-      }
-
-      const res = await api.get(`/orders/${orderId}`);
-
-      if (res.data?.data) {
-      setOrder(res.data.data);
-      }
-
-      console.log("ORDER DETAIL:", res.data);
-
-    } catch (err) {
-      console.error(err);
-      alert("Gagal mengambil data order");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleQty = async (itemId, type) => {
     // NOTE: ini optional (kalau backend support update order)
     // kalau belum ada endpoint update → bisa dihapus dulu
     console.log(itemId, type);
   };
-
-   const handleNonTunai = async () => {
-   try {
-      const orderId = localStorage.getItem("orderId");
-
-      if (!orderId) {
-         alert("Order ID tidak ditemukan");
-         return;
-      }
-
-      const res = await api.post("/payments", {
-         orderId: orderId,
-         method: "midtrans"
-      });
-
-      const data = res.data;
-
-      console.log("PAYMENT RESPONSE:", data);
-
-      const redirectUrl = data?.data?.redirect_url;
-
-      if (!redirectUrl) {
-         throw new Error("Redirect URL tidak ditemukan");
-      }
-
-      // langsung ke Midtrans
-      window.location.href = redirectUrl;
-
-   } catch (error) {
-      console.error("PAYMENT ERROR:", error.response?.data || error.message);
-
-      alert(
-         error.response?.data?.message ||
-         "Gagal membuat pembayaran"
-      );
-   }
-   };
 
 
 const fetchTables = async () => {
@@ -108,7 +54,106 @@ const fetchTables = async () => {
   }
 };
 
+const createOrder = async () => {
+  try {
+    if (!customerName.trim()) {
+      alert("Nama pemesan wajib diisi");
+      return null;
+    }
 
+    if (orderType === "dine_in" && !selectedTable) {
+      alert("Silakan pilih nomor meja");
+      return null;
+    }
+
+    const cartItems = JSON.parse(
+      localStorage.getItem("cartItems") || "[]"
+    );
+
+  const payload = {
+    customerName,
+    items: cartItems.map(item => ({
+      productId: item.id,
+      quantity: item.quantity,
+      notes: notes || "",
+    })),
+  };
+
+  if (orderType === "dine_in") {
+    payload.tableId = selectedTable;
+  }
+
+    console.log("ORDER PAYLOAD:", payload);
+
+    const res = await api.post("/orders", payload);
+
+    const orderId = res.data?.data?.id;
+
+    if (!orderId) {
+      throw new Error("Order ID tidak ditemukan");
+    }
+
+    return orderId;
+
+
+  } catch (err) {
+  console.log("ERROR OBJECT:", err);
+  console.log("ERROR RESPONSE:", err?.response);
+  console.log(
+  "ERROR DATA:",
+  JSON.stringify(err?.response?.data, null, 2)
+);
+  console.log("ERROR MESSAGE:", err?.message);
+
+  return null;
+}
+};
+
+const handleNonTunai = async () => {
+  try {
+    const orderId = await createOrder();
+
+    if (!orderId) return;
+
+    const res = await api.post("/payments", {
+      orderId,
+      method: "midtrans",
+    });
+
+    const redirectUrl = res.data?.data?.redirect_url;
+
+    if (!redirectUrl) {
+      throw new Error("Redirect URL tidak ditemukan");
+    }
+
+    window.location.href = redirectUrl;
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      error.response?.data?.message ||
+      "Gagal membuat pembayaran"
+    );
+  }
+};
+
+const handleCash = async () => {
+  try {
+    const orderId = await createOrder();
+
+    if (!orderId) return;
+
+    navigate("/payment/cash", {
+      state: {
+        orderId,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+
+    alert("Gagal membuat pesanan");
+  }
+};
 
   if (loading) {
     return (
@@ -160,7 +205,7 @@ const fetchTables = async () => {
               >
                 <div>
                   <p className="text-xl font-bold text-black">
-                    {item.products?.name}
+                    {item.name}
                   </p>
                   <p className="text-sm text-black/60">
                     Rp {Number(item.price).toLocaleString('id-ID')}
@@ -169,7 +214,7 @@ const fetchTables = async () => {
 
                 <div className="text-right">
                   <p className="font-semibold text-black">
-                    x{item.qty}
+                    x{item.quantity}
                   </p>
 
                   
@@ -308,7 +353,7 @@ const fetchTables = async () => {
 
             {/* CASH */}
             <button
-              onClick={() => navigate('/payment/cash')}
+              onClick={handleCash}
               className="
                 w-[220px]
                 py-4

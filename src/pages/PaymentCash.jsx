@@ -1,10 +1,75 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { useEffect, useState } from "react";
+import { api } from "../services/api";
 
 const PaymentCash = () => {
   const navigate = useNavigate();
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
   const today = new Date().toISOString().split('T')[0];
+
+    useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const orderId = localStorage.getItem("orderId");
+
+        if (!orderId) {
+          navigate("/cart");
+          return;
+        }
+
+        const res = await api.get(`/orders/${orderId}`);
+
+        setOrder(res.data.data);
+      } catch (err) {
+        console.error(err);
+        alert("Gagal mengambil detail pesanan");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrder();
+  }, []);
+
+
+    const handleCashPayment = async () => {
+    try {
+      const orderId = localStorage.getItem("orderId");
+
+      const res = await api.post("/payments", {
+        orderId,
+        method: "cash",
+      });
+
+      console.log(
+      "PAYMENT RESPONSE:",
+      JSON.stringify(res.data, null, 2)
+    );
+      console.log(res.data);
+
+      navigate("/success");
+    } catch (err) {
+      console.error(err);
+
+      alert(
+        err.response?.data?.message ||
+        "Gagal membuat pembayaran tunai"
+      );
+    }
+  };
+
+
+
+  if (loading) {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      Loading...
+    </div>
+  );
+}
 
   return (
     <div className="min-h-screen relative overflow-x-hidden font-roboto bg-white pt-[80px]">
@@ -70,8 +135,16 @@ const PaymentCash = () => {
                     <p className="font-medium text-[20px] text-white">Metode Pembayaran: <span className="font-bold">Tunai</span></p>
                     <p className="text-[15px] text-white/70">Nama Merchant: <span className="font-medium">Josjis</span></p>
                     <div className="text-[16px] text-white/70 leading-relaxed">
-                      <p>Meja nomor: 12</p>
-                      <p>Jenis pesanan: Makan di tempat</p>
+                      <p>
+                        Meja nomor: {order?.tables?.name || "-"}
+                      </p>
+                      <p>
+                        Jenis pesanan:
+                        {" "}
+                        {order?.order_type === "dine_in"
+                          ? "Makan di Tempat"
+                          : "Bungkus"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -83,7 +156,9 @@ const PaymentCash = () => {
                       <div className="size-[60px] bg-white/5 rounded-full flex items-center justify-center text-3xl shadow-inner">💳</div>
                       <span className="text-[20px] text-white/80 font-medium font-roboto">Jumlah</span>
                     </div>
-                    <span className="text-[24px] font-bold text-white font-roboto">Rp 54.000</span>
+                    <span className="text-[24px] font-bold text-white font-roboto">
+                    Rp {Number(order?.total_amount || 0).toLocaleString("id-ID")}
+                  </span>
                   </div>
 
                   <div className="flex items-center justify-between group">
@@ -121,7 +196,7 @@ const PaymentCash = () => {
         {/* ACTION BUTTON - Lanjutkan */}
         <div className="relative z-20 mb-32 flex justify-center">
           <button
-            onClick={() => navigate('/success')}
+            onClick={handleCashPayment}
             className="bg-[#FFD900] text-[#743B0E] font-paytone text-[32px] py-6 px-24 rounded-[15px] shadow-[0_17px_10px_-1px_rgba(0,0,0,0.5)] border-2 border-white/40 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest"
           >
             Lanjutkan
