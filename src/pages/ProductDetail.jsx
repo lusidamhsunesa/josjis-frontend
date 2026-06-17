@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { adminService } from "../services/adminService";
 import { cartService } from "../services/cartService";
@@ -52,63 +53,35 @@ const ProductDetail = () => {
       </div>
 
       {/* TOP BAR */}
-      <header className="relative z-20 bg-gradient-to-r from-[#d20102] to-[#770001] h-[80px] flex items-center px-6 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.12)]">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 bg-[#FFD900] rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform ml-[20px]"
-        >
-          <img src="/back_arrow.svg" alt="back" className="w-6 h-6" />
-        </button>
-
-        <h1 className="font-paytone text-2xl text-white ml-4">
-          JOS JIS - Detail Menu
-        </h1>
-
-        <div className="hidden md:flex ml-auto items-center gap-10 bg-[#770001] px-10 py-2 rounded-full mr-[95px]">
-          <button
-            onClick={() => navigate("/home")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Beranda
-          </button>
-          <button
-            onClick={() => navigate("/menu")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Menu
-          </button>
-          <button
-            onClick={() => navigate("/cart")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Keranjang
-          </button>
-          <button
-            onClick={() => navigate("/")}
-            className="text-white hover:text-accent-yellow"
-          >
-            Keluar
-          </button>
-        </div>
-      </header>
+      <Navbar showBackButton={true} />
 
       <main className="relative z-10 pt-20 pb-20 px-8 md:px-[170px] max-w-[1440px] mx-auto space-y-24">
         {/* Main Product Glass Section */}
         <div className="relative mt-[143px]">
           {/* Large Glass Background - Width equalized to other sections */}
-          <div className="absolute inset-0 -inset-y-24 bg-gradient-to-r from-white/0 to-white/10 backdrop-blur-md rounded-[20px] shadow-[0_26px_42.4px_rgba(0,0,0,0.5),inset_0_30px_12px_-21px_rgba(0,0,0,0.32)] border border-white/10 pointer-events-none" />
+          <div
+          className="
+            absolute inset-0 -inset-y-24
+            rounded-[20px]
+            border border-white/20
+            bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+            backdrop-blur-xl
+            shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.15)]
+            pointer-events-none
+          "
+        />
 
           <div className="relative flex flex-col lg:flex-row gap-20  px-20 items-center justify-between">
             <div className="flex-1 space-y-6">
-              <h2 className="font-paytone text-6xl md:text-[45px] text-black uppercase tracking-tight">
+              <h2 className="font-paytone text-6xl md:text-[45px] text-white uppercase tracking-tight">
                 {product.name}
               </h2>
-              <p className="text-2xl md:text-[28px] text-black leading-relaxed max-w-2xl">
+              <p className="text-2xl md:text-[28px] text-white leading-relaxed max-w-2xl">
                 {product.description ||
                   "Penyetan lezat khas Josjis dengan sambal pilihan."}
               </p>
               <div className="flex items-center gap-4 pt-4">
-                <span className="bg-accent-yellow px-6 py-2 rounded-full font-bold text-black text-2xl">
+                <span className="bg-accent-yellow px-6 py-2 rounded-full font-bold text-brown text-2xl">
                   {rupiahFormat(product.price)}
                 </span>
                 {product.isBestSeller && (

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../services/auth/authContext";
+import { useOrders } from "../../services/adminOrders/orderContext";
 
 const imgVector = "/admin/reviews.svg";
 const imgGroup = "/admin/status.svg";
@@ -107,6 +108,16 @@ function EntypoLogOut({ className }) {
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
+  const orderContext = useOrders();
+
+  console.log("ORDER CONTEXT:", orderContext);
+
+  const { orders = [] } = orderContext || {};
+
+  const pendingCount = orders.filter(
+    (o) => o.status === "pending"
+  ).length;
   const menuItems = [
     { name: "Dashboard", path: "/admin", icon: MaterialSymbolsLightDashboardRounded },
     { name: "Manajemen Menu", path: "/admin/menu", icon: MaterialSymbolsEdit },
@@ -151,9 +162,9 @@ const Sidebar = () => {
                   </span>
                 </div>
 
-                {item.hasBadge && (
+                {item.hasBadge && pendingCount > 0 && (
                   <span className="bg-[#FFD900] text-[#743B0E] font-roboto font-black text-sm w-7 h-7 rounded-full flex items-center justify-center shadow-md">
-                    2
+                    {pendingCount}
                   </span>
                 )}
               </NavLink>

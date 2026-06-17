@@ -3,6 +3,8 @@ import AdminLayout from "../../components/admin/AdminLayout";
 import { adminService } from "../../services/adminService";
 import { useProducts } from "../../services/adminProducts/productContext";
 import { rupiahFormat } from "../../utils/rupiahFormat";
+import { useOrders } from "../../services/adminOrders/orderContext";
+import NewOrdersButton from "../../components/admin/NewOrdersButton";
 
 const imgVector3 = "/admin/hand_meal.svg";
 const imgIcSearch = "/admin/search.svg";
@@ -61,30 +63,7 @@ const Dashboard = () => {
             </p>
           </div>
 
-          <div
-            className="relative cursor-pointer"
-            onClick={() => (window.location.href = "/admin/orders")}
-          >
-            <div className="w-[173px] h-[45px] mt-[18px] bg-[#ffd900] rounded-[10px] border border-black/20 shadow-sm relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center pl-[11px]">
-                <div className="size-[24px]">
-                  <img
-                    alt=""
-                    src={imgVector3}
-                    className="size-full object-contain"
-                  />
-                </div>
-                <span className="font-roboto font-extrabold text-[18px] text-[#743b0e] ml-[8px]">
-                  Pesanan Baru
-                </span>
-              </div>
-            </div>
-            <div className="absolute -top-[18px] -right-[9px] size-[30px] bg-[#ffd900] rounded-full border border-black/20 flex items-center justify-center shadow-md">
-              <span className="font-roboto font-medium text-[18px] text-[#743b0e]">
-                {pendingOrdersCount}
-              </span>
-            </div>
-          </div>
+          <NewOrdersButton />
         </div>
 
         {/* Products Container */}

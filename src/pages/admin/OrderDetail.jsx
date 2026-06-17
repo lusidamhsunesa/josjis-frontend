@@ -13,6 +13,15 @@ const OrderDetail = () => {
   const navigate = useNavigate();
   const { data: res = [], isLoading, isError } = useGetOrderByIdQuery(id);
   const order = res?.data;
+
+  console.log(
+  "ORDER DETAIL FULL:",
+  JSON.stringify(order, null, 2)
+);
+
+  console.log("ORDER DETAIL:", order);
+  console.log("PAYMENTS:", order?.payments);
+  
   const { editOrder } = useOrders();
 
   const handleUpdateStatus = async (id, newStatus) => {

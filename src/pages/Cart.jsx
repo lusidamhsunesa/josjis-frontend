@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cartService } from '../services/cartService';
-import { api } from "../services/api";
 import Navbar from '../components/Navbar';
 
 const Cart = () => {
@@ -27,51 +26,20 @@ const Cart = () => {
   };
 
 
-const handleConfirmOrder = async () => {
+const handleConfirmOrder = () => {
   if (cartItems.length === 0) {
     alert("Keranjang Anda kosong!");
     return;
   }
 
-  try {
-    const payload = {
-    customerName: "Guest",
-    tableId: "0a0f9cf9-3880-457c-9ae8-c43f7b9b00ff",
-    items: cartItems.map((item) => ({
-      productId: item.productId || item.id,
-      quantity: item.quantity,
-      notes: item.notes || "pedas",
-  }))
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(cartItems)
+  );
+
+  navigate("/checkout");
 };
 
-    console.log("CART ITEMS:", cartItems);
-    console.log("PAYLOAD:", JSON.stringify(payload, null, 2));
-
-    const res = await api.post("/orders", payload);
-    const data = res.data;
-
-    console.log("ORDER RESPONSE:", data);
-
-    if (!data?.data?.id) {
-      throw new Error("Failed to create order");
-    }
-
-    localStorage.setItem("orderId", data.data.id);
-
-    navigate("/checkout");
-
-  } catch (error) {
-    console.log(
-      "ERROR DATA:",
-      JSON.stringify(error.response?.data, null, 2)
-    );
-
-    alert(
-      error.response?.data?.message?.details?.[0]?.message ||
-      "Gagal membuat pesanan"
-    );
-  }
-};
 
 console.log(cartItems);
 

@@ -4,6 +4,7 @@ import AdminLayout from "../../components/admin/AdminLayout";
 import { adminService } from "../../services/adminService";
 import { rupiahFormat } from "../../utils/rupiahFormat";
 import ProductFormModal from "./AddEditMenu";
+import NewOrdersButton from "../../components/admin/NewOrdersButton";
 
 const imgVector7 = "/admin/hand_meal.svg";
 const imgGridiconsDropdown = "/admin/dropdown.svg";
@@ -90,33 +91,17 @@ const ManagementMenu = () => {
             </p>
           </div>
 
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate("/admin/orders")}
-          >
-            <div className="w-[173px] h-[45px] mt-[10px] bg-[#ffd900] rounded-[10px] border border-black/20 shadow-sm overflow-hidden flex items-center pl-[11px] gap-2">
-              <div className="size-[24px]">
-                <img
-                  alt=""
-                  src={imgVector7}
-                  className="size-full object-contain"
-                />
-              </div>
-              <span className="font-roboto font-extrabold text-[18px] text-[#743b0e]">
-                Pesanan Baru
-              </span>
-            </div>
-            <div className="absolute -top-[10px] -right-[9px] size-[30px] bg-[#ffd900] rounded-full border border-black/20 flex items-center justify-center shadow-md">
-              <span className="absolute inset-0 flex items-center justify-center font-roboto font-medium text-[18px] text-[#743b0e]">
-                {pendingOrdersCount}
-              </span>
-            </div>
-          </div>
+          <NewOrdersButton />
         </div>
 
         {/* Stats Section */}
         <div className="flex gap-[120px] mb-[35px]">
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px]
+              border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
                <img src="/admin/orders.svg" className="w-[43px] h-[43px]" />
             </div>
@@ -129,7 +114,12 @@ const ManagementMenu = () => {
               </p>
             </div>
           </div>
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px]
+              border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
               <img src="/admin/makanan.svg" className="w-[46px] h-[46px]" />
             </div>
@@ -142,7 +132,11 @@ const ManagementMenu = () => {
               </p>
             </div>
           </div>
-          <div className="w-[380px] h-[120px] rounded-[15px] border border-white bg-gradient-to-b from-transparent to-white/15 overflow-hidden relative shadow-[0px_0px_42px_0px_rgba(0,0,0,0.58)] flex items-center gap-[21px] p-[24px] pl-[31px]">
+          <div className="w-[380px] h-[120px] rounded-[15px] border border-white/20
+              bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_100%)]
+              backdrop-blur-xl
+              shadow-[inset_0_30px_12px_-21px_rgba(0,0,0,0.32),0_0_42px_0_rgba(0,0,0,0.1)]
+              overflow-hidden relative flex items-center gap-[21px] p-[24px] pl-[31px]">
             <div className="w-[81px] h-[72px] bg-[rgba(217,217,217,0.1)] border border-white rounded-[15px] flex items-center justify-center">
               <img src="/admin/minuman.svg" className="w-[46px] h-[46px]" />
             </div>
